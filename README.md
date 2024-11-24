@@ -29,7 +29,9 @@ gcloud auth login
 **Linux/MacOS**
 ```bash
 git clone https://github.com/username/repository.git
-</div> <div style="flex: 1;"> **Windows (Git Bash)** ```bash git clone https://github.com/username/repository.git ``` </div> <div style="flex: 1;"> **Windows (PowerShell)** ```powershell git clone https://github.com/username/repository.git ``` </div> </div>
+</div> <div style="flex: 1;"> 
+  **Windows (Git Bash)** ```bash git clone https://github.com/username/repository.git ``` </div> <div style="flex: 1;"> 
+  **Windows (PowerShell)** ```powershell git clone https://github.com/username/repository.git ``` </div> </div>
 
 
 
