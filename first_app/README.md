@@ -27,7 +27,9 @@ gcloud app create --project=%PROJECT_ID%
 An important step is to create an application deployment descriptor which is required for the deployment, one for each application.
 ```YAML
 runtime: python311
-handlers: 
+handlers:
+- url: /static
+  static_dir: static
 - url: /.*
   secure: always
   script: auto
