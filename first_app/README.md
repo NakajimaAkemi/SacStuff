@@ -41,6 +41,7 @@ Another important file is the `.gcloudignore`, it specifies which files/director
 .gitignore
 __pycache__/
 env/
+venv/
 /setup.cfg
 ```
 
