@@ -52,5 +52,6 @@ gcloud app browse
 ```
 > [!NOTE]
 > Make sure to have a billing account attached to the project.
+
 > [!WARNING]
 > remember to delete the project before going to bed
