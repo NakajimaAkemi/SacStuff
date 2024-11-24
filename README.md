@@ -60,4 +60,3 @@ gcloud projects undelete ${PROJECT_ID}
 ```bash
 gcloud projects undelete %PROJECT_ID%
 ```
-#### App management
