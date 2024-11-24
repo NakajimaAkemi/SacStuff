@@ -14,7 +14,7 @@ gcloud auth login
 ```
 ### Project management commands
 #### Project creation
-**Linux**
+*Linux*
 ```bash
 export PROJECT_ID=<your-project-name>
 gcloud projects create ${PROJECT_ID} --set-as-default
