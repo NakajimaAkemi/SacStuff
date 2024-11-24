@@ -12,3 +12,17 @@ gcloud components install app-engine-python
 ```bash
 gcloud auth login
 ```
+
+### Project creation
+```bash
+gcloud auth login
+```
+ **Linux/MacOS**
+  ```bash
+  git clone https://github.com/username/repository.git
+  ```
+
+### Project management commands
+
+
+#### App management
