@@ -21,6 +21,17 @@ gcloud auth login
   ```bash
   git clone https://github.com/username/repository.git
   ```
+## Comandi per Clonare un Repository
+
+<div style="display: flex; gap: 10px;">
+
+<div style="flex: 1;">
+**Linux/MacOS**
+```bash
+git clone https://github.com/username/repository.git
+</div> <div style="flex: 1;"> **Windows (Git Bash)** ```bash git clone https://github.com/username/repository.git ``` </div> <div style="flex: 1;"> **Windows (PowerShell)** ```powershell git clone https://github.com/username/repository.git ``` </div> </div>
+
+
 
 ### Project management commands
 
