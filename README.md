@@ -28,7 +28,8 @@ gcloud auth login
 ```bash
 git clone https://github.com/username/repository.git
 ```
-</div> 
+</div>
+
 <div style="flex: 1;"> 
 **Windows (Git Bash)** 
   ```bash 
