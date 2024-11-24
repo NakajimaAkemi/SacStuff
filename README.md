@@ -17,10 +17,8 @@ gcloud auth login
 ```bash
 gcloud auth login
 ```
- **Linux/MacOS**
-  ```bash
-  git clone https://github.com/username/repository.git
-  ```
+
+
 ## Comandi per Clonare un Repository
 
 <div style="display: flex; gap: 10px;">
@@ -29,9 +27,10 @@ gcloud auth login
 **Linux/MacOS**
 ```bash
 git clone https://github.com/username/repository.git
+```
 </div> 
 <div style="flex: 1;"> 
-  **Windows (Git Bash)** 
+**Windows (Git Bash)** 
   ```bash 
      git clone https://github.com/username/repository.git 
   ``` 
