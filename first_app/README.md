@@ -5,7 +5,7 @@ In this section we will introduce how to create an application and deploy it to 
 Our Flask App repository will look like this.
 ```
 flask-app/ 
-  ├── app.py 
+  ├── main.py 
   ├── app.yaml
   ├── static/
     └── hello.css 
