@@ -8,9 +8,10 @@ flask-app/
   ├── app.yaml
   ├── static/
     └── hello.css 
-  ├── templates/ # Directory per i file HTML (template Jinja2) │ 
+  ├── templates/ 
     ├── hello.html 
     └── 404.html 
-  ├── requirements.txt # Dipendenze del progetto Python 
-  └── README.md # Documentazione del progetto
+  ├── requirements.txt 
+  └── README.md
 ```
+
