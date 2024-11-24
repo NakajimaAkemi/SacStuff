@@ -20,7 +20,7 @@ export PROJECT_ID=<your-project-name>
 gcloud projects create ${PROJECT_ID} --set-as-default
 gcloud describe ${PROJECT_ID}
 ```
-**Windows Shell**
+*Windows Shell*
 ```bash
 set PROJECT_ID=<your-project-name>
 gcloud projects create %PROJECT_ID% --set-as-default
@@ -31,32 +31,32 @@ gcloud describe %PROJECT_ID%
 gcloud projects list
 ```
 #### Setting a project as default.
-**Linux**
+*Linux*
 ```bash
 gcloud config set project ${PROJECT_ID}
 ```
-**Windows**
+*Windows*
 ```bash
 gcloud config set project %PROJECT_ID%
 ```
 
 #### Deleting a project
-**Linux**
+*Linux*
 ```bash
 gcloud project delete ${PROJECT_ID}
 ```
-**Windows**
+*Windows*
 ```bash
 gcloud project delete %PROJECT_ID%
 ```
 
 
 #### Restoring a project
-**Linux**
+*Linux*
 ```bash
 gcloud projects undelete ${PROJECT_ID}
 ```
-**Windows**
+*Windows*
 ```bash
 gcloud projects undelete %PROJECT_ID%
 ```
