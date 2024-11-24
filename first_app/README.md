@@ -35,7 +35,8 @@ handlers:
 Another important file is the `.gcloudignore`, it specifies which files/directories are not mean for deployment. 
 ```
 .gcloudignore
-.git.gitignore
+.git
+.gitignore
 __pycache__/
 env/
 /setup.cfg
