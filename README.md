@@ -14,34 +14,16 @@ gcloud auth login
 ```
 
 ### Project creation
+#### Bash
 ```bash
-gcloud auth login
+export PROJECT_ID=<your-project-name>
+gcloud projects create ${PROJECT_ID} --set-as-default
 ```
-
-
-## Comandi per Clonare un Repository
-
-<div style="display: flex; gap: 10px;">
-
-<div style="flex: 1;">
-
-### Linux/MacOS
+#### Windows Shell
 ```bash
-git clone https://github.com/username/repository.git
-</div> <div style="flex: 1;">
-Windows (Git Bash)
-bash
-Copia codice
-git clone https://github.com/username/repository.git
-</div> <div style="flex: 1;">
-Windows (PowerShell)
-powershell
-Copia codice
-git clone https://github.com/username/repository.git
-</div> </div>
+set PROJECT_ID=<your-project-name>
+gcloud projects create %PROJECT_ID% --set-as-default
 ```
-
-
 
 ### Project management commands
 
