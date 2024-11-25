@@ -126,5 +126,15 @@ Flask allows us to reference the variables we passed to our HTML views as recipi
             <tr><td>Sex:</td><td>{{horse['sex']}}</td></tr>
 </table>
 ```
-and dinamically structure our HTML views.
-
+Define variables by setting a value, we can also apply a filter like `|count` in order to pass the lenght of a collection instead of its items.
+```HTML
+{% set ngen = pedigree.keys() | count %}
+```
+We can also iterate over collections.
+```HTML
+<table>
+            <tr><td>Breed:</td><td>{{horse['breed']{{</td></tr>
+            <tr><td>Specility:</td><td>{{horse['speciality']}}</td></tr>
+            <tr><td>Sex:</td><td>{{horse['sex']}}</td></tr>
+</table>
+```
