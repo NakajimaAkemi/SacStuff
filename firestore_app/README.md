@@ -25,7 +25,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```
 
 > [!WARNING]
-> Remember to include credentials.json to .gcloudignore file
+> Remember to include credentials.json to the .gcloudignore file
 
 ### Managing data with the Firestore library
 *Importing the libary and setting up the connection to the DB*
