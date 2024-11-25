@@ -24,8 +24,50 @@ gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@$
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```
 ### Managing data with the Firestore library
+*Importing the libary and setting up the connection to the DB*
+```Python 
+from google.cloud import firestore
+client = firestore.Client()
 ```
+*Adding data to the collection*
+```Python 
+sidious_ref = db.collection('sith').document('dsidious')
+sidious_ref.set({
+    'first': 'Sheev',
+    'last': 'Palpatine',
+    'nick': 'Darth Sidious',
+    'born': '83 BBY'
+})
 ```
+*Reading data*
+```Python
+def print_stream(docs):
+    for doc in docs:
+        print(f'{doc.id} => {doc.to_dict()}')
+
+sith_ref = db.collection('sith')
+docs = sith_ref.stream()
+print_stream(docs)
+```
+*Updating data*
+```Python
+print_stream(docs)
+sith_ref = db.collection('sith').document('dsidious')
+sith_ref.update({'born': '84 BBY'})
+docs = db.collection('sith').where('first', '==','Sheev').stream()
+print_stream(docs)
+```
+*Querying data*
+```Python
+docs = db.collection('sith').where('first', '==','Sheev').stream()
+print_stream(docs)
+## Ordering by and adding a limit
+docs = db.collection('sith').order_by('first').limit(2).stream()
+print_stream(docs)
+docs = db.collection('sith').order_by('first', direction=firestore.Query.DESCENDING).limit(2).stream()
+print_stream(docs)
+```
+
 ### DAO
 To manage our data we will use the DAO pattern, which will allow us to define a Model for our data and create a separation with the controller logic.
 ```python
