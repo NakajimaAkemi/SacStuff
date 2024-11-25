@@ -73,7 +73,8 @@ print_stream(docs)
 ```
 
 ### DAO
-To manage our data we will use the DAO pattern, which will allow us to define a Model for our data and create a separation with the controller logic.
+To manage our data we will use the DAO pattern, which will allow us to define a Model for our data and create a separation with the controller logic. The following code example keeps a collection locally, in order to use the Firestore DB we will need to include the library and adapt our code, as you can see in the `horses_gcp.py` file.
+
 ```python
 class Horses(object):
     def __init__(self):
