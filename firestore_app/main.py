@@ -1,49 +1,23 @@
-from google.cloud import firestore
-import json 
+from flask import Flask, render_template, request
+#from horses_local import Horses
+from horses import Horses
+#from horses_gcp import Horses
 
-class Horses(Object):
-      def __init__(self):
-            self.db.firestore.Client()
-            self.populate_db('horses.json')
-      def populate_db(self, filename):
-            horses_ref=self.db.collection('horses') 
-            with open(filename) as f: 
-                horses = json.load(f)
-                for h in horses:
-                    horses_ref.document(h['name']).set(h)
+app = Flask(__name__,
+            static_url_path='/static', 
+            static_folder='static')
+horses_dao=Horses()
 
+@app.route('/horse/<horse>', methods=['GET'])
+def get_horse(horse):
+    ngen=4
+    p=horses_dao.get_pedigree(horse, ngen=ngen)
+    hrs=horses_dao.get_horse(horse)
+    return render_template('pedigree.html', horse=hrs, pedigree=p, nrows=(len(p[ngen-1])))
 
-def print_stream(docs):
-        for doc in docs:
-            print(f'{doc.id} => {doc.to_dict()}')
-            
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html', path=request.path), 404
 
-
-## Il nostro firestore Client
-db = firestore.Client()
-
-## aggiungiamo la collection e oggetti Sith
-vader_ref = db.collection('sith').document('dvader')
-vader_ref.set({'first': 'Anakin','last': 'Skywalker','nick': 'Darth Vader','born': '41 BBY'})
-sidious_ref = db.collection('sith').document('dsidious')
-sidious_ref.set({'first': 'Sheev','last': 'Palpatine','nick': 'Darth Sidious','born': '83 BBY'})
-
-## printiamo la collection sith
-sith_ref = db.collection('sith')
-docs = sith_ref.stream()
-print_stream(docs)
-
-## Where clause
-docs = db.collection('sith').where('first', '==', 'Sheev').stream()
-
-## Limit e order by clause
-docs = db.collection('sith').order_by('first').limit(2).stream()
-docs = db.collection('sith').order_by('first', direction=firestore.Query.DESCENDING).limit(2).stream()
-print_stream(docs)
-## Update
-sith_ref = db.collection('sith').document('dsidious')
-sith_ref.update({'born': '84 BBY'})
-docs = db.collection('sith').where('first', '==', 'Sheev').stream()
-print_stream(docs)
-
-
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
