@@ -118,3 +118,13 @@ class Horses(object):
 ```
 
 ### Parsing data in a Flask view
+Flask allows us to reference the variables we passed to our HTML views as recipient by using the `{{}}`.
+```HTML
+<table>
+            <tr><td>Breed:</td><td>{{horse['breed']{{</td></tr>
+            <tr><td>Specility:</td><td>{{horse['speciality']}}</td></tr>
+            <tr><td>Sex:</td><td>{{horse['sex']}}</td></tr>
+</table>
+```
+and dinamically structure our HTML views.
+
