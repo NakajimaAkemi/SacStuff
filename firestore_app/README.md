@@ -23,6 +23,10 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${
 gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@${PROJECT_ID}.iam.gserviceaccount.com
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```
+
+> [!WARNING]
+> Remember to include credentials.json to .gcloudignore file
+
 ### Managing data with the Firestore library
 *Importing the libary and setting up the connection to the DB*
 ```Python 
@@ -111,3 +115,5 @@ class Horses(object):
             horses_list=self.get_parents(horses_list)
         return pedigree
 ```
+
+### Parsing data in a Flask view
