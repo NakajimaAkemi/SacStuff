@@ -130,11 +130,18 @@ Define variables by setting a value, we can also apply a filter like `|count` in
 ```HTML
 {% set ngen = pedigree.keys() | count %}
 ```
+IF statements.
+```HTML
+{% if col%2==0 %}
+<-----Do stuff here----->
+{% else %}
+<-----Do stuff here----->
+{% endif %}
+```
+
 We can also iterate over collections.
 ```HTML
-<table>
-            <tr><td>Breed:</td><td>{{horse['breed']{{</td></tr>
-            <tr><td>Specility:</td><td>{{horse['speciality']}}</td></tr>
-            <tr><td>Sex:</td><td>{{horse['sex']}}</td></tr>
-</table>
+{% for col in range(pedigree[gen]|count) %}
+<--Iteration happens here-->
+{% endfor %}
 ```
