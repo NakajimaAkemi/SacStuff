@@ -2,7 +2,7 @@
 In this exercise we will setup a Flask Application backed by a Firestore DB.
 
 ## Firestrore DB
-Firestore DB is a schema less Database which can store different documents within the same collections, where Each document is uniquely identified by a name. In our Flask application we need to include **google-cloud-firestore** library.
+Firestore DB is a schema less Database which can store different documents within the same collections, where Each document is uniquely identified by a name. In our Flask application we need to include `google-cloud-firestore` library.
 
 ### Setting up the credentials
 *Linux*
@@ -23,7 +23,9 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${
 gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@${PROJECT_ID}.iam.gserviceaccount.com
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```
-
+### Managing data with the Firestore library
+```
+```
 ### DAO
 To manage our data we will use the DAO pattern, which will allow us to define a Model for our data and create a separation with the controller logic.
 ```python
