@@ -4,6 +4,21 @@ In this exercise we will setup a Flask Application backed by a Firestore DB.
 ## Firestrore DB
 Firestore DB is a schema less Database which can store different documents within the same collections, where Each document is uniquely identified by a name. In our Flask application we need to include `google-cloud-firestore` library.
 
+### Setting up the Project and the datastore
+Just like first example we setup a project.
+*Linux*
+```bash
+gcloud app create --project=${PROJECT_ID}
+```
+*Windows*
+```bash
+gcloud app create --project=%PROJECT_ID%
+```
+
+After doing so we create a database in the Firestore section, making sure to set it up in `Native mode`.
+> [!WARNING]
+> Keep the database name (default) otherwise it won't be seen
+
 ### Setting up the credentials
 *Linux*
 ```bash
