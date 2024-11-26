@@ -10,7 +10,8 @@ Firestore DB is a schema less Database which can store different documents withi
 export NAME=webuser
 export PROJECT_ID=rlfirestore2024
 gcloud iam service-accounts create ${NAME}
-gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${NAME}@${PROJECT_ID}.iam.gserviceaccount.com"--role "roles/owner" touch credentials.json
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${NAME}@${PROJECT_ID}.iam.gserviceaccount.com"--role "roles/owner"
+touch credentials.json
 gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@${PROJECT_ID}.iam.gserviceaccount.com
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```
@@ -19,7 +20,8 @@ export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 set NAME=webuser
 set PROJECT_ID=rlfirestore2024
 gcloud iam service-accounts create %NAME%
-gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NAME%@%PROJECT_ID%.iam.gserviceaccount.com"--role "roles/owner" touch credentials.json
+gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NAME%@%PROJECT_ID%.iam.gserviceaccount.com"--role "roles/owner"
+echo. > credentials.json
 gcloud iam service-accounts keys create credentials.json --iam-account %NAME%@%PROJECT_ID%.iam.gserviceaccount.com
 set GOOGLE_APPLICATION_CREDENTIALS="%cd%/credentials.json"
 ```
