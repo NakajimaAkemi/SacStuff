@@ -7,13 +7,24 @@ Firestore DB is a schema less Database which can store different documents withi
 ### Setting up the Project and the datastore
 We setup a project as usual.
 
+
 *Linux*
 ```bash
-gcloud app create --project=${PROJECT_ID}
+export NAME=webuser
+export PROJECT_ID=rlfirestore2024
 ```
-*Windows*
 ```bash
-gcloud app create --project=%PROJECT_ID%
+gcloud projects create ${PROJECT_ID} --set-as-default
+gcloud describe ${PROJECT_ID}
+```
+*Windows Shell*
+```bash
+set NAME=webuser
+set PROJECT_ID=rlfirestore2024
+```
+```bash
+gcloud projects create %PROJECT_ID% --set-as-default
+gcloud describe %PROJECT_ID%
 ```
 
 After doing so we create a database in the Firestore section, making sure to set it up in `Native mode`.
@@ -25,13 +36,8 @@ After doing so we create a database in the Firestore section, making sure to set
 
 ### Setting up the credentials
 *Linux*
+
 ```bash
-export NAME=webuser
-export PROJECT_ID=rlfirestore2024
-```
-```bash
-export NAME=webuser
-export PROJECT_ID=rlfirestore2024
 gcloud iam service-accounts create ${NAME}
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${NAME}@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/owner"
 touch credentials.json
@@ -39,10 +45,7 @@ gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@$
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```
 *Windows*
-```bash
-set NAME=webuser
-set PROJECT_ID=rlfirestore2024
-```
+
 ```bash
 gcloud iam service-accounts create %NAME%
 gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NAME%@%PROJECT_ID%.iam.gserviceaccount.com" --role "roles/owner"
@@ -52,6 +55,16 @@ set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 
 > [!WARNING]
 > Remember to include credentials.json to the .gcloudignore file
+
+*Linux*
+```bash
+gcloud app deploy
+```
+
+*Windows*
+```bash
+gcloud app deploy
+```
 
 ### Managing data with the Firestore library
 *Importing the libary and setting up the connection to the DB*
