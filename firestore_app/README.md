@@ -56,6 +56,7 @@ set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 > [!WARNING]
 > Remember to include credentials.json to the .gcloudignore file
 
+#### Deploy the app
 *Linux*
 ```bash
 gcloud app deploy
