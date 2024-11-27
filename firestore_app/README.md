@@ -18,7 +18,10 @@ gcloud app create --project=%PROJECT_ID%
 
 After doing so we create a database in the Firestore section, making sure to set it up in `Native mode`.
 > [!WARNING]
-> Keep the database name (default) otherwise it won't be seen
+> Keep the database name `(default)` otherwise it won't be seen
+
+> [!WARNING]
+> Make sure the database and the applicaiton both have the same region.
 
 ### Setting up the credentials
 *Linux*
