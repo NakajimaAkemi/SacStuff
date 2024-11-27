@@ -28,6 +28,10 @@ After doing so we create a database in the Firestore section, making sure to set
 ```bash
 export NAME=webuser
 export PROJECT_ID=rlfirestore2024
+```
+```bash
+export NAME=webuser
+export PROJECT_ID=rlfirestore2024
 gcloud iam service-accounts create ${NAME}
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${NAME}@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/owner"
 touch credentials.json
@@ -38,6 +42,8 @@ export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 ```bash
 set NAME=webuser
 set PROJECT_ID=rlfirestore2024
+```
+```bash
 gcloud iam service-accounts create %NAME%
 gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NAME%@%PROJECT_ID%.iam.gserviceaccount.com" --role "roles/owner"
 gcloud iam service-accounts keys create credentials.json --iam-account %NAME%@%PROJECT_ID%.iam.gserviceaccount.com
