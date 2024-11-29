@@ -15,7 +15,7 @@ export PROJECT_ID=rlfirestore2024
 ```
 ```bash
 gcloud projects create ${PROJECT_ID} --set-as-default
-gcloud describe ${PROJECT_ID}
+gcloud projects describe ${PROJECT_ID}
 ```
 *Windows Shell*
 ```bash
@@ -24,7 +24,7 @@ set PROJECT_ID=rlfirestore2024
 ```
 ```bash
 gcloud projects create %PROJECT_ID% --set-as-default
-gcloud describe %PROJECT_ID%
+gcloud projects describe %PROJECT_ID%
 ```
 
 After doing so we create a database in the Firestore section, making sure to set it up in `Native mode`.
