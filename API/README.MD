@@ -21,4 +21,73 @@ Rest compliant response
 {“red”: 255,“green”: 255,“blue”: 0}
 
 ## OpenAPI
-Is based on Swagger specification
+Is based on Swagger initiative the API describes:
+ - Endpoints
+ - Operations on each endpoints (HTTP methods)
+ - Parameters and return values on each operation
+ - Authetication methods
+ - Contact information, license, terms of use, ...
+
+An API can be described by a JSON or YAML document
+
+consumes and produces are the mime types accepted and given in output
+base path is the prefix for api
+schemes are the accepted protocols
+paths is the list of API entrypoints, which defines the method 
+parametrers and responses
+
+swagger: "2.0"
+info:
+ title: Sample API
+ description: "API descr."
+ version: 1.0.0
+host: api.example.com
+basePath: /v1
+schemes:
+ - https
+consumes:
+ - application/json
+ - application/xml
+produces:
+ - application/json
+ - application/xml
+paths:
+ /users/{userId}:
+  get:
+    summary: "Get user"
+    parameters:
+     - in: path
+       name: userId
+       required: true
+       type: integer
+       minimum: 1
+       Description: "..."
+    responses:
+       200:
+           description: OK
+           schema:
+               type: object
+               properties:
+                   id:
+                      type: integer
+                      example: 4
+                   name:
+                      type: string
+                      example: "RL"
+       400:
+           description: "..."
+definitions:
+     User:
+       properties:
+              id:
+                type: integer
+              name:
+                type: string
+        # in response section
+schema:
+     $ref: '#/definitions/User'
+
+
+securityDefinitions:BasicAuth:type: basicsecurity:- BasicAuth: []
+## Colors application
+
