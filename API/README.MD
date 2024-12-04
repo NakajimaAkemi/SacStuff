@@ -93,6 +93,7 @@ securityDefinitions:BasicAuth:type: basicsecurity:- BasicAuth: []
 ## Colors application
 Now we will create a web application that manages the RGB values of colors, it will include a Firestore Backend, Forms for editing and API with Swagger.
 
+## WTForms
 
 
 
