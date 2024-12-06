@@ -21,18 +21,25 @@ We need to reference them also in the HTML template.
 </table>
 </form>
 ```
-In our route `/colors/<color>`
+In our route `/colors/<color>` we fetch the inputs from the `POST` request.
 ```Python
-<form method="POST">
-<table>
-    <tr><td>{{form.red.label}}</td><td>{{form.red}}</td></tr>
-    <tr><td>{{form.green.label}}</td><td>{{form.green}}</td></tr>
-    <tr><td>{{form.blue.label}}</td><td>{{form.blue}}</td></tr>
-    <tr><td></td><td><input type="submit" value="Edit"></td></tr>
-</table>
-</form>
+cform=Colorform(request.form)
+colors_dao.add_color(color, cform.red.data, cform.green.data, cform.blue.data)
+```
+If the request is `GET` we create a we initialize the form bu using the class Struct.
+```Python
+
+## dictionary to object
+class Struct:
+    def __init__(self,**entries):
+        self.__dict__.update(entries)
+.....
+
+c=colors_dao.get_color_by_name(color)
+cform=Colorform(obj=Struct(**c)))
 ```
 
+## API definition
 
 First of all we do a recall about HTTP REST:
  - REST is a stateless paradigm
