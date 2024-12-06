@@ -60,7 +60,16 @@ schemes:
 ```
 
 
-
+```yaml
+paths:
+    /colors/{colorName}:
+        parameters: 
+        -   name: colorName
+            in: path
+            description: 'Name of the color'
+            type: string
+            required: true
+```
 
 
 
