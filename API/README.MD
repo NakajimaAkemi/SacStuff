@@ -40,13 +40,12 @@ cform=Colorform(obj=Struct(**c)))
 ```
 
 ## API definition
-
 First of all we do a recall about HTTP REST:
  - REST is a stateless paradigm
  - Each resource is identified by an URI
- - The types of access are mapped over HTTP methods 
+ - The types of access are mapped over HTTP methods `POST`,`GET`,`PUT`,`DELETE`...
  - The outcome of the request is defined by a status code
- - The URI path is /api/version/resource/label/
+ - The URI path is `/api/version/resource/label/`
 
 *example*
 Color API
