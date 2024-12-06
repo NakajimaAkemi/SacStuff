@@ -1,4 +1,18 @@
-# Restful API
+# Colors application
+In this section we will create a web application that manages the RGB values of colors, including a Firestore Databases, Forms for editing and API documentation with Swagger. We define a Color DAO which is has the same structure as the former example that allows CRUD operations.
+
+## WTForms
+```Python
+from wtforms import Form, IntegerField,validators
+class ColorForm(Form):
+    red = IntegerField('Red', [validators.NumberRange(min=0,max=255)])
+    green = IntegerField('Green', [validators.NumberRange(min=0,max=255)])
+    blue = IntegerField('Blue', [validators.NumberRange(min=0,max=255)])
+```
+
+
+
+
 First of all we do a recall about HTTP REST:
  - REST is a stateless paradigm
  - Each resource is identified by an URI
@@ -90,10 +104,7 @@ schema:
 
 securityDefinitions:BasicAuth:type: basicsecurity:- BasicAuth: []
 
-## Colors application
-Now we will create a web application that manages the RGB values of colors, it will include a Firestore Backend, Forms for editing and API with Swagger.
 
-## WTForms
 
 
 
