@@ -2,6 +2,7 @@
 In this section we will create a web application that manages the RGB values of colors, including a Firestore Databases, Forms for editing and API documentation with Swagger. We define a Color DAO which is has the same structure as the former example that allows CRUD operations.
 
 ## WTForms
+In order to manage and validate the form field we include the WTForms library, which allows us to define a form object and define each field as its properties.  In our case we are trying to bind our form to the Color DAO object.
 ```Python
 from wtforms import Form, IntegerField,validators
 class ColorForm(Form):
@@ -9,8 +10,28 @@ class ColorForm(Form):
     green = IntegerField('Green', [validators.NumberRange(min=0,max=255)])
     blue = IntegerField('Blue', [validators.NumberRange(min=0,max=255)])
 ```
-
-
+We need to reference them also in the HTML template.
+```HTML
+<form method="POST">
+<table>
+    <tr><td>{{form.red.label}}</td><td>{{form.red}}</td></tr>
+    <tr><td>{{form.green.label}}</td><td>{{form.green}}</td></tr>
+    <tr><td>{{form.blue.label}}</td><td>{{form.blue}}</td></tr>
+    <tr><td></td><td><input type="submit" value="Edit"></td></tr>
+</table>
+</form>
+```
+In our route `/colors/<color>`
+```Python
+<form method="POST">
+<table>
+    <tr><td>{{form.red.label}}</td><td>{{form.red}}</td></tr>
+    <tr><td>{{form.green.label}}</td><td>{{form.green}}</td></tr>
+    <tr><td>{{form.blue.label}}</td><td>{{form.blue}}</td></tr>
+    <tr><td></td><td><input type="submit" value="Edit"></td></tr>
+</table>
+</form>
+```
 
 
 First of all we do a recall about HTTP REST:
