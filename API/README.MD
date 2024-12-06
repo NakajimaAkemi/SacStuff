@@ -47,9 +47,7 @@ First of all we do a recall about HTTP REST:
  - The outcome of the request is defined by a status code
  - The URI path is `/api/version/resource/label/`
 
-We describe our API in a YAML document, where we specify, endpoints, operations, parameters and return values on each operation, authentication methods and more.
-
-The first portion of our YAML document specifies the information metadata, base path, host and schemes(protocols).
+We describe our API in a YAML document, where we specify, endpoints, operations, parameters and return values on each operation, authentication methods and more. The first portion of our YAML document specifies the information metadata, base path, host and schemes(protocols).
 
 ```yaml
 swagger: "2.0"
