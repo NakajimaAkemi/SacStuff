@@ -50,11 +50,13 @@ First of all we do a recall about HTTP REST:
 
 ```yaml
 swagger: "2.0"
-info:title: "Colors"
-description: "Manage color with RGB components"
-version: "1.0.0"
+    info:title: "Colors"
+    description: "Manage color with RGB components"
+    version: "1.0.0"
 host: "api-dot-colors20221001.appspot.com"
 basePath: "/api/v1"
+schemes:
+    - "https"
 ```
 
 
