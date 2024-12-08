@@ -172,6 +172,19 @@ def validate_colordata(self, colordata):
                 return False
         return True
 ```
+### Testing locally
+We can test our API locally with this python script.
+```Python
+#/usr/bin/python3
+import requests
+base_url='http://localhost:8080/api/v1/colors'
+#list colors
+r=requests.get(base_url+'/')
+print('Available colors: '+ str(r.json()))
+# get color
+r=requests.get(base_url+'/wisteria')
+print('Wisteria color: '+ str(r.json()))
+```
 ### Deploying the API to GCP
 In the GCP project we need to enable the Build API feature
 We define the API's deployment descriptor `api.yaml`, we define the entrypoint with `gunicorn`
