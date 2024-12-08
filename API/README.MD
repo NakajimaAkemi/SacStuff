@@ -245,13 +245,12 @@ set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 
 
 #### Deploy the app
+Classic web app deployment
 ```bash
-gcloud app deploy
+gcloud app deploy app.yaml
 ```
 
-
-
-We deploy our API by specifying the YAML file.
+API deploymnet
 ```bash
 gcloud app deploy api.yaml
 ```
