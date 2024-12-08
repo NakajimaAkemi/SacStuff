@@ -185,7 +185,7 @@ print('Available colors: '+ str(r.json()))
 r=requests.get(base_url+'/wisteria')
 print('Wisteria color: '+ str(r.json()))
 ```
-### Deploying the API to GCP
+### Defining the API's deployment descriptor 
 In the GCP project we need to enable the Build API feature
 We define the API's deployment descriptor `api.yaml`, we define the entrypoint with `gunicorn`
 ```yaml
@@ -199,99 +199,64 @@ handlers:
       secure: always
       script: auto
 ```
+
+## Deploying everything to GCP
+After testing our API locally we are ready to deploy everything to GCP.
+### Creating the project
+*Linux*
+```bash
+export NAME=webuser
+export PROJECT_ID=APIcolors08122024
+```
+```bash
+gcloud projects create ${PROJECT_ID} --set-as-default
+gcloud projects describe ${PROJECT_ID}
+```
+*Windows Shell*
+```bash
+set NAME=webuser
+set PROJECT_ID=rlfirestore2024
+```
+```bash
+gcloud projects create %PROJECT_ID% --set-as-default
+gcloud projects describe %PROJECT_ID%
+```
+After creating the project we must go to the GCP dashboard and abilitate the Firestore DB in native mode (make sure to setup everything in the same region) and the CLOUD API for our project.
+
+
+### Setting up the Firestore DB 
+*Linux*
+
+```bash
+gcloud iam service-accounts create ${NAME}
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${NAME}@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/owner"
+touch credentials.json
+gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@${PROJECT_ID}.iam.gserviceaccount.com
+export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
+```
+*Windows*
+
+```bash
+gcloud iam service-accounts create %NAME%
+gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NAME%@%PROJECT_ID%.iam.gserviceaccount.com" --role "roles/owner"
+gcloud iam service-accounts keys create credentials.json --iam-account %NAME%@%PROJECT_ID%.iam.gserviceaccount.com
+set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
+```
+
+
+#### Deploy the app
+```bash
+gcloud app deploy
+```
+
+
+
 We deploy our API by specifying the YAML file.
 ```bash
 gcloud app deploy api.yaml
 ```
 
 
-
-
-
-____________________
-*example*
-Color API
-/api/v0.1/color/yellow
-POST: create a new color given RGB values
-Content-type: application/json{‘red’: 255, ‘green’: 255, ‘blue’: 0}
-Form data:
-Content-type: application/x-www-form-urlencodedred=255&green=255&blue=0
-Rest compliant response
-400 Bad request{‘message’: ‘invalid request parameters’}
-200 OK{‘status’: ‘ko’,‘message’: ‘invalid request parameters’}
-
-/api/v0.1/json/color/yellow
-{“red”: 255,“green”: 255,“blue”: 0}
-
-## OpenAPI
-Is based on Swagger initiative the API describes:
- - Endpoints
- - Operations on each endpoints (HTTP methods)
- - Parameters and return values on each operation
- - Authetication methods
- - Contact information, license, terms of use, ...
-
-An API can be described by a JSON or YAML document
-
-consumes and produces are the mime types accepted and given in output
-base path is the prefix for api
-schemes are the accepted protocols
-paths is the list of API entrypoints, which defines the method 
-parametrers and responses
-
-swagger: "2.0"
-info:
- title: Sample API
- description: "API descr."
- version: 1.0.0
-host: api.example.com
-basePath: /v1
-schemes:
- - https
-consumes:
- - application/json
- - application/xml
-produces:
- - application/json
- - application/xml
-paths:
- /users/{userId}:
-  get:
-    summary: "Get user"
-    parameters:
-     - in: path
-       name: userId
-       required: true
-       type: integer
-       minimum: 1
-       Description: "..."
-    responses:
-       200:
-           description: OK
-           schema:
-               type: object
-               properties:
-                   id:
-                      type: integer
-                      example: 4
-                   name:
-                      type: string
-                      example: "RL"
-       400:
-           description: "..."
-definitions:
-     User:
-       properties:
-              id:
-                type: integer
-              name:
-                type: string
-        # in response section
-schema:
-     $ref: '#/definitions/User'
-
-
-securityDefinitions:BasicAuth:type: basicsecurity:- BasicAuth: []
 
 
 
