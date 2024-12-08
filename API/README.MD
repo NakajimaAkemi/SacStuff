@@ -202,6 +202,15 @@ handlers:
 
 ## Deploying everything to GCP
 After testing our API locally we are ready to deploy everything to GCP.
+Our requirements.txt file should look like this.
+```text
+flask
+requests
+wtforms
+google-cloud-firestore
+flask-restful
+gunicorn
+```
 ### Creating the project
 *Linux*
 ```bash
