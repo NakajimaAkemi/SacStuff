@@ -215,7 +215,7 @@ gcloud projects describe ${PROJECT_ID}
 *Windows Shell*
 ```bash
 set NAME=webuser
-set PROJECT_ID=rlfirestore2024
+set PROJECT_ID=APIcolors08122024
 ```
 ```bash
 gcloud projects create %PROJECT_ID% --set-as-default
