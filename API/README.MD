@@ -39,7 +39,7 @@ c=colors_dao.get_color_by_name(color)
 cform=Colorform(obj=Struct(**c)))
 ```
 
-## API definition
+## API setup
 First of all we do a recall about HTTP REST:
  - REST is a stateless paradigm
  - Each resource is identified by an URI
@@ -47,6 +47,7 @@ First of all we do a recall about HTTP REST:
  - The outcome of the request is defined by a status code
  - The URI path is `/api/version/resource/label/`
 
+### API definition document
 We describe our API in a YAML document, where we specify, endpoints, operations, parameters and return values on each operation, authentication methods and more. The first portion of our YAML document specifies the information metadata, base path, host and schemes(protocols).
 
 ```yaml
@@ -60,25 +61,91 @@ basePath: "/api/v1"
 schemes:
     - "https"
 ```
-
+In the YAML file we will define the different `paths` of our API, specifying the name, rpute, parameters, the allowed action, response codes and data's schema.
 
 ```yaml
 paths:
     /colors/{colorName}:
-        parameters: 
-        -   name: colorName
-            in: path
-            description: 'Name of the color'
-            type: string
-            required: true
+        parameters:
+      - name: colorName
+        in: path
+        description: 'Name of the color'
+        type: string
+        required: true
+    get:
+      description: "Get color RGB from color name"
+      operationId: "colorGet"
+      responses:
+          200:
+              description: "Success."
+              schema:
+                  $ref: "#/definitions/Color"
+          404:
+              description: "color not found"
+    post:
+      description: "add a new Color"
+      operationId: "colorPost"
+      consumes:
+          - application/json
+      parameters:
+      - in: body
+        name: color
+        description: "Color object"
+        schema:
+          $ref: "#/definitions/Color"
+        required: true 
+      responses:
+          204:
+              description: "Color added."
+          400:
+              description: "Invalid color"
+          409:
+              description: "Already inserted"
+```
+As last piece of our YAML Api description document we will add the definitions, which specifies the schema of our data. The following data is referenced in the rest of the file with the format `#/definitions/Name`.
+
+```yaml
+definitions:
+    ColorList:
+      type: array
+      items:
+        type: string
+    Color:
+      type: object
+      properties: 
+        red: 
+          type: integer
+          minimum: 0
+          maximum: 255
+        green: 
+          type: integer
+          minimum: 0
+          maximum: 255
+        blue: 
+          type: integer
+          minimum: 0
+          maximum: 255
+```
+### API main program
+We use in our case the `flask_restful` library in order to setup the API's main program, where we define the API as classes.
+
+
+
+
+### Deploying the API to GCP
+In the GCP project we need to enable the Build API feature
+We define the API's deployment descriptor `api.yaml`
+```yaml
+runtime: python39
+service: api
+entrypoint: gunicorn api:app
+handlers:
+    - url: /static
 ```
 
-
-
-
-
-
-
+```bash
+gcloud app deploy api.yaml
+```
 
 
 
