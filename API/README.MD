@@ -127,22 +127,36 @@ definitions:
           maximum: 255
 ```
 ### API main program
-We use in our case the `flask_restful` library in order to setup the API's main program, where we define the API as classes.
+We use in our case the `flask_restful` library in order to setup the API's main program, where we define the API as classes. The first part is including the libraries, deinining the API and the basepath.
+
+```Python
+from flask import Flask, request
+from flask_restful import Resource, Api
+app = Flask(__name__,static_url_path='/static',static_folder='static')
+api = Api(app)
+colors_dao= Colors()
+basePath = '/api/v1'
+```
+The API works on resouces
 
 
 
 
 ### Deploying the API to GCP
 In the GCP project we need to enable the Build API feature
-We define the API's deployment descriptor `api.yaml`
+We define the API's deployment descriptor `api.yaml`, we define the entrypoint with `gunicorn`
 ```yaml
 runtime: python39
 service: api
 entrypoint: gunicorn api:app
 handlers:
     - url: /static
+      static_dir: static
+    - url: /.*
+      secure: always
+      script: auto
 ```
-
+We deploy our API by specifying the YAML file.
 ```bash
 gcloud app deploy api.yaml
 ```
