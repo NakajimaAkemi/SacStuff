@@ -221,7 +221,7 @@ set PROJECT_ID=APIcolors08122024
 gcloud projects create %PROJECT_ID% --set-as-default
 gcloud projects describe %PROJECT_ID%
 ```
-After creating the project we must go to the GCP dashboard and abilitate the Firestore DB in native mode (make sure to setup everything in the same region) and the CLOUD API for our project.
+After creating the project we must go to the GCP dashboard and abilitate the `Firestore DB` in native mode (make sure to setup everything in the same region) and the `Cloud Build API` for our project.
 
 
 ### Setting up the Firestore DB 
