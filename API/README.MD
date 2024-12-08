@@ -137,11 +137,41 @@ api = Api(app)
 colors_dao= Colors()
 basePath = '/api/v1'
 ```
-The API works on resouces
+The API works on resouces, we define for example a ColorsResource which allows us to define the HTTP methods functions that return data and the response code according to our API definition, then add it to our API object.
 
+```Python
+class ColorsResource(Resource):
+    def get(self,colorname):
+        colorname=colorname.lower()
+        color = colors_dao.get_color_by_name(color_name)
+        if color is None:
+            return None, 404
+        else:
+            return color, 200
+    def post(self,colorname):
+            colordata=request.json()
+            print("got POST request: "+str(colordata))
+            if not self.validate_colordata(colordata):
+                return None, 400
+            if colors_dao.get_color_by_name(colorname) is not None:
+                return None, 409
+            colors_dao.add_color(colorname, colordata['red'],colordata['green'],colordata['blue'])
+            return None, 201
 
-
-
+api.add_resource(ColorsResource, f'{basePath}/colors/<string:colorname>')
+```
+We can also validate our form input by fetching the data from the form `request.json`.
+```Python
+def validate_colordata(self, colordata):
+        for k in ['red','green','blue']:
+             if k not in colordata.keys():
+                return False
+             if not isinstance(colordata[k],(int)):
+                  return False
+             if colordata[k] < 0 or colordata[k]>255:
+                return False
+        return True
+```
 ### Deploying the API to GCP
 In the GCP project we need to enable the Build API feature
 We define the API's deployment descriptor `api.yaml`, we define the entrypoint with `gunicorn`
