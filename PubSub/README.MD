@@ -8,30 +8,25 @@ google-cloud-pubsub
 numpy
 gunicorn
 ```
-### Creating the project
+## Creating the project and credentials setup
 *Linux*
 ```bash
-export NAME=webuser
+export NAME=pubsubuser
 export PROJECT_ID=pubsubsac
-```
-```bash
-gcloud projects create ${PROJECT_ID} --set-as-default
-gcloud projects describe ${PROJECT_ID}
 ```
 *Windows Shell*
 ```bash
-set NAME=webuser
+set NAME=pubsubuser
 set PROJECT_ID=pubsubsac
 ```
+Then we create our project.
 ```bash
 gcloud projects create %PROJECT_ID% --set-as-default
 gcloud projects describe %PROJECT_ID%
 ```
-After creating the project we must go to the GCP dashboard and abilitate the `Firestore DB` in native mode (make sure to setup everything in the same region) and the `Cloud Build API` for our project.
-
 ### Setting up the credetials
+This process is no different than the one we setup with FirestoreDB.
 *Linux*
-
 ```bash
 gcloud iam service-accounts create ${NAME}
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --member "serviceAccount:${NAME}@${PROJECT_ID}.iam.gserviceaccount.com" --role "roles/owner"
@@ -47,8 +42,8 @@ gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NA
 gcloud iam service-accounts keys create credentials.json --iam-account %NAME%@%PROJECT_ID%.iam.gserviceaccount.com
 set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 ```
+## Setting up topics 
 *Linux*
-
 ```bash
 export TOPIC=cpu_temperature
 gcloud pubsub topics create ${TOPIC}
