@@ -24,6 +24,9 @@ Then we create our project.
 gcloud projects create %PROJECT_ID% --set-as-default
 gcloud projects describe %PROJECT_ID%
 ```
+> [!IMPORTANT]
+> We need to abilitate the FirestoreDB, Cloud Build API and  PubSub on the dashboard.
+
 ### Setting up the credetials
 This process is no different than the one we setup with FirestoreDB.
 *Linux*
@@ -48,15 +51,18 @@ set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 export TOPIC=cpu_temperature
 gcloud pubsub topics create ${TOPIC}
 ```
+gcloud pubsub topics list
+gcloud pubsub topics describe ${TOPIC}
+```
+```
 *Windows*
 ```bash
 set TOPIC=cpu_temperature
 gcloud pubsub topics create %TOPIC%
 ```
-
 ```
 gcloud pubsub topics list
-gcloud pubsub topics describe ${TOPIC}
+gcloud pubsub topics describe %TOPIC%
 ```
 #### Deploy the app
 Classic web app deployment
