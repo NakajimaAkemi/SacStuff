@@ -1,4 +1,13 @@
 # PubSub
+Our `requirements.txt` should look like this.
+```Python
+flask
+requests
+google-cloud-firestore
+google-cloud-pubsub
+numpy
+gunicorn
+```
 ### Creating the project
 *Linux*
 ```bash
@@ -50,6 +59,10 @@ set TOPIC=cpu_temperature
 gcloud pubsub topics create %TOPIC%
 ```
 
+```
+gcloud pubsub topics list
+gcloud pubsub topics describe ${TOPIC}
+```
 #### Deploy the app
 Classic web app deployment
 ```bash
