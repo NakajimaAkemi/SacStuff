@@ -45,7 +45,8 @@ gcloud projects add-iam-policy-binding %PROJECT_ID% --member "serviceAccount:%NA
 gcloud iam service-accounts keys create credentials.json --iam-account %NAME%@%PROJECT_ID%.iam.gserviceaccount.com
 set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 ```
-## Setting up topics 
+## Setting up pub sub
+### Creating topics
 *Linux*
 ```bash
 export TOPIC=cpu_temperature
@@ -76,3 +77,18 @@ API deploymnet
 ```bash
 gcloud app deploy api.yaml
 ```
+### Subscription 
+*Linux*
+```bash
+export SUBSCRIPTION_NAME=cpu_sub
+gcloud pubsub subscriptions create ${SUBSCRIPTION_NAME} --topic ${TOPIC}
+```
+*Windows*
+```bash
+set SUBSCRIPTION_NAME=cpu_sub
+gcloud pubsub subscriptions create %SUBSCRIPTION_NAME% --topic %TOPIC%
+```
+
+
+
+
