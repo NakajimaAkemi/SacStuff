@@ -51,6 +51,7 @@ set GOOGLE_APPLICATION_CREDENTIALS=%cd%\credentials.json
 export TOPIC=cpu_temperature
 gcloud pubsub topics create ${TOPIC}
 ```
+```
 gcloud pubsub topics list
 gcloud pubsub topics describe ${TOPIC}
 ```
