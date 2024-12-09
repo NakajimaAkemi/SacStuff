@@ -89,6 +89,18 @@ set SUBSCRIPTION_NAME=cpu_sub
 gcloud pubsub subscriptions create %SUBSCRIPTION_NAME% --topic %TOPIC%
 ```
 
-
-
+### Message 
+#### Sending
+```bash
+gcloud pubsub topics publish testTopic --attribute=from="cli" --message="Test Message"
+```
+#### Pulling
+*Linux*
+```bash
+gcloud pubsub subscriptions pull ${SUBSCRIPTION_NAME}
+```
+*Windows*
+```bash
+gcloud pubsub subscriptions pull %SUBSCRIPTION_NAME%
+```
 
