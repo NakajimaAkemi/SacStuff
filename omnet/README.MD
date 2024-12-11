@@ -9,7 +9,7 @@ After creating our .ned file we run these commands.
 ```bash
 update_template.py
 make_runfile.py -f MM1.ini
-make -j $(nproc) -f runfile
+make -j $(nproc) -f Runfile
 ```
 
 ## Generate the `.db` file
