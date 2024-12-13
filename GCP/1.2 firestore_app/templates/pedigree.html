@@ -1,0 +1,27 @@
+<html>
+    <link rel="stylesheet" href="/static/horses.css">
+    <body>
+        <h1>{{horse['name']}}</h1>
+        <table>
+            <tr><td>Breed:</td><td>{{horse['breed']}}</td></tr>
+            <tr><td>Specility:</td><td>{{horse['speciality']}}</td></tr>
+            <tr><td>Sex:</td><td>{{horse['sex']}}</td></tr>
+        </table>
+        <table>
+            {% set ngen = pedigree.keys() | count %}
+            {% for gen in pedigree.keys() %}
+            <tr>
+                {% for col in range(pedigree[gen]|count) %}
+                {% if col%2==0 %}{% set cls="stallion"%}{% else %}{% set cls="mare"%}{% endif %}
+                {% if gen==0 and horse['sex']=='M' %}{% set cls="stallion"%}{% endif %}
+                {% if gen==0 and horse['sex']=='F' %}{% set cls="mare"%}{% endif %}
+                {% set hrs=pedigree[gen][col] %}
+                <td colspan="{{2**(ngen-gen)}}" class="{{cls}}">
+                    {% if hrs== "" %}{{hrs}}{% else %}<a href="{{hrs}}">{{hrs}}</a>{% endif %}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

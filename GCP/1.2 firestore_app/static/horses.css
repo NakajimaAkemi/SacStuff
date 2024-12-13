@@ -1,0 +1,17 @@
+td.stallion{
+    border: 1px solid;
+    background-color: PaleTurquoise   ;
+    font-family: sans-serif;
+    padding: 6px;
+    min-width: 100px;
+}
+td.mare{
+    border: 1px solid;
+    background-color: LightPink;
+    font-family: sans-serif;
+    padding: 6px;
+    min-width: 100px;
+}
+.error{
+    color: red;
+}
