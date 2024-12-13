@@ -1,0 +1,347 @@
+version 3
+run unbalanced-0-0-20241213-12:08:42-36706
+attr configname unbalanced-0
+attr datetime 20241213-12:08:42
+attr datetimef 20241213-120842
+attr experiment unbalanced-0
+attr inifile unbalanced.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network unbalanced
+attr processid 36706
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config cmdenv-performance-display false
+config cmdenv-status-frequency 60s
+config extends unbalanced
+config **.delta 0
+config description "Global Scenario"
+config **.highLoadSrv.queueLength.result-recording-modes +histogram
+config **.lowLoadSrv.queueLength.result-recording-modes +histogram
+config **.sink.lifeTime.result-recording-modes +histogram
+config ned-path .;../queueinglib
+config network unbalanced
+config cmdenv-config-name unbalanced
+config qtenv-default-config unbalanced
+config repeat 5
+config sim-time-limit 10000s
+config **.vector-recording false
+
+par unbalanced.lowLoadSrv typename "\"org.omnetpp.queueing.Queue\""
+par unbalanced.lowLoadSrv capacity -1
+par unbalanced.lowLoadSrv fifo true
+par unbalanced.lowLoadSrv serviceTime 1s*exponential(1/mu)
+attr unit s
+scalar unbalanced.lowLoadSrv busy:timeavg 0.60278469069865
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar unbalanced.lowLoadSrv queueingTime:mean 0.14860724141234
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar unbalanced.lowLoadSrv queueingTime:max 2.611483312645
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar unbalanced.lowLoadSrv queueLength:timeavg 0.89549237602661
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar unbalanced.lowLoadSrv queueLength:max 20
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic unbalanced.lowLoadSrv queueLength:histogram
+field count 72401
+field mean 1.9815748401265
+field stddev 2.0064516824729
+field min 0
+field max 20
+field sum 143468
+field sqrsum 575764
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	14596
+bin	1	23322
+bin	2	13947
+bin	3	8340
+bin	4	4932
+bin	5	2927
+bin	6	1773
+bin	7	1043
+bin	8	600
+bin	9	329
+bin	10	179
+bin	11	111
+bin	12	88
+bin	13	78
+bin	14	53
+bin	15	30
+bin	16	23
+bin	17	17
+bin	18	9
+bin	19	3
+bin	20	1
+bin	21	0
+scalar unbalanced.lowLoadSrv dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par unbalanced.highLoadSrv typename "\"org.omnetpp.queueing.Queue\""
+par unbalanced.highLoadSrv capacity -1
+par unbalanced.highLoadSrv fifo true
+par unbalanced.highLoadSrv serviceTime 1s*exponential(1/mu)
+attr unit s
+scalar unbalanced.highLoadSrv busy:timeavg 0.60326563647156
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar unbalanced.highLoadSrv queueingTime:mean 0.15556204824244
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar unbalanced.highLoadSrv queueingTime:max 2.124285945333
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar unbalanced.highLoadSrv queueLength:timeavg 0.93523903403354
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar unbalanced.highLoadSrv queueLength:max 18
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic unbalanced.highLoadSrv queueLength:histogram
+field count 72629
+field mean 2.0475292238637
+field stddev 2.0570628413279
+field min 0
+field max 18
+field sum 148710
+field sqrsum 611814
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	14280
+bin	1	23005
+bin	2	13926
+bin	3	8394
+bin	4	5128
+bin	5	3078
+bin	6	1812
+bin	7	1100
+bin	8	700
+bin	9	447
+bin	10	292
+bin	11	196
+bin	12	132
+bin	13	73
+bin	14	38
+bin	15	19
+bin	16	6
+bin	17	2
+bin	18	1
+bin	19	0
+scalar unbalanced.highLoadSrv dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par unbalanced.highLoadSrc typename "\"org.omnetpp.queueing.Source\""
+par unbalanced.highLoadSrc numJobs -1
+par unbalanced.highLoadSrc interArrivalTime 1s*exponential(1/(lambda+delta))
+attr unit s
+par unbalanced.highLoadSrc jobName "\"job\""
+par unbalanced.highLoadSrc jobType 0
+par unbalanced.highLoadSrc jobPriority 0
+par unbalanced.highLoadSrc startTime 0.132646s
+attr unit s
+par unbalanced.highLoadSrc stopTime -1s
+attr unit s
+scalar unbalanced.highLoadSrc created:last 60120
+attr interpolationmode none
+attr recordingmode last
+attr title "the number of jobs created, last"
+par unbalanced.lowLoadSrc typename "\"org.omnetpp.queueing.Source\""
+par unbalanced.lowLoadSrc numJobs -1
+par unbalanced.lowLoadSrc interArrivalTime 1s*exponential(1/(lambda-delta))
+attr unit s
+par unbalanced.lowLoadSrc jobName "\"job\""
+par unbalanced.lowLoadSrc jobType 0
+par unbalanced.lowLoadSrc jobPriority 0
+par unbalanced.lowLoadSrc startTime 0.14976s
+attr unit s
+par unbalanced.lowLoadSrc stopTime -1s
+attr unit s
+scalar unbalanced.lowLoadSrc created:last 60259
+attr interpolationmode none
+attr recordingmode last
+attr title "the number of jobs created, last"
+par unbalanced.sink typename "\"org.omnetpp.queueing.Sink\""
+par unbalanced.sink keepJobs false
+scalar unbalanced.sink generation:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the generation of the arrived jobs, mean"
+scalar unbalanced.sink generation:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the generation of the arrived jobs, max"
+scalar unbalanced.sink delaysVisited:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total number of delays visited by arrived jobs, mean"
+scalar unbalanced.sink delaysVisited:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the total number of delays visited by arrived jobs, max"
+scalar unbalanced.sink queuesVisited:mean 0.60238081392934
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total number of queues visited by arrived jobs, mean"
+scalar unbalanced.sink queuesVisited:max 1
+attr interpolationmode none
+attr recordingmode max
+attr title "the total number of queues visited by arrived jobs, max"
+scalar unbalanced.sink totalServiceTime:mean 0.10018776756496
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent  by arrived jobs, mean"
+attr unit s
+scalar unbalanced.sink totalServiceTime:max 1.428118530589
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent  by arrived jobs, max"
+attr unit s
+scalar unbalanced.sink totalDelayTime:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent in delay nodes by arrived jobs, mean"
+attr unit s
+scalar unbalanced.sink totalDelayTime:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent in delay nodes by arrived jobs, max"
+attr unit s
+scalar unbalanced.sink totalQueueingTime:mean 0.15208062951679
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent in queues by arrived jobs, mean"
+attr unit s
+scalar unbalanced.sink totalQueueingTime:max 2.611483312645
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent in queues by arrived jobs, max"
+attr unit s
+scalar unbalanced.sink lifeTime:mean 0.25226839708175
+attr interpolationmode none
+attr recordingmode mean
+attr title "lifetime of arrived jobs, mean"
+attr unit s
+scalar unbalanced.sink lifeTime:max 2.774611574301
+attr interpolationmode none
+attr recordingmode max
+attr title "lifetime of arrived jobs, max"
+attr unit s
+statistic unbalanced.sink lifeTime:histogram
+field count 120379
+field mean 0.25226839708175
+field stddev 0.25369287559106
+field min 1.276805e-06
+field max 2.774611574301
+field sum 30367.817372303
+field sqrsum 15408.377734859
+attr interpolationmode none
+attr recordingmode histogram
+attr title "lifetime of arrived jobs"
+attr unit s
+bin	-inf	0
+bin	0	17558
+bin	0.04	15143
+bin	0.08	12898
+bin	0.12	11095
+bin	0.16	9202
+bin	0.2	8001
+bin	0.24	6742
+bin	0.28	5659
+bin	0.32	5112
+bin	0.36	4251
+bin	0.4	3702
+bin	0.44	3187
+bin	0.48	2642
+bin	0.52	2313
+bin	0.56	1931
+bin	0.6	1683
+bin	0.64	1354
+bin	0.68	1143
+bin	0.72	968
+bin	0.76	821
+bin	0.8	769
+bin	0.84	591
+bin	0.88	541
+bin	0.92	413
+bin	0.96	383
+bin	1	347
+bin	1.04	237
+bin	1.08	207
+bin	1.12	193
+bin	1.16	144
+bin	1.2	162
+bin	1.24	130
+bin	1.28	107
+bin	1.32	101
+bin	1.36	91
+bin	1.4	73
+bin	1.44	68
+bin	1.48	56
+bin	1.52	52
+bin	1.56	44
+bin	1.6	33
+bin	1.64	28
+bin	1.68	32
+bin	1.72	21
+bin	1.76	18
+bin	1.8	12
+bin	1.84	17
+bin	1.88	15
+bin	1.92	13
+bin	1.96	15
+bin	2	9
+bin	2.04	11
+bin	2.08	9
+bin	2.12	8
+bin	2.16	5
+bin	2.2	2
+bin	2.24	1
+bin	2.28	2
+bin	2.32	2
+bin	2.36	1
+bin	2.4	2
+bin	2.44	0
+bin	2.48	2
+bin	2.52	1
+bin	2.56	2
+bin	2.6	0
+bin	2.64	2
+bin	2.68	1
+bin	2.72	0
+bin	2.76	1
+bin	2.8	0
+par unbalanced typename "\"unbalanced\""
+par unbalanced mu 10
+par unbalanced lambda 6
+par unbalanced delta 0
+

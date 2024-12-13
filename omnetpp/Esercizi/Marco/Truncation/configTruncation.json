@@ -1,0 +1,22 @@
+{
+    "scenario_schema":{
+        "delta": {"pattern": "**.delta", "type": "real"}
+    },
+    "metrics": {
+        "avgResponseTime" : {"module": "**.sink", "scalar_name": "lifeTime:mean", "aggr": ["none"]},
+        "servUtil": {"module": "**.srv", "scalar_name": "busy:timeavg", "aggr": ["none"]}
+    },
+    "analyses":{
+        "DeltaSens": {
+            "outfile": "results/truncationD.data",
+            "scenarios": {
+                "fixed": {},
+                "range": ["delta"]
+            },
+            "metrics": [
+                {"metric": "avgResponseTime", "aggr":"none"},
+                {"metric": "servUtil", "aggr":"none"}
+            ]
+        }
+    }
+}

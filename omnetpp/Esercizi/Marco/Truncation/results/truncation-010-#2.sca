@@ -1,0 +1,293 @@
+version 3
+run truncation-010-2-20241213-15:40:43-142342
+attr configname truncation-010
+attr datetime 20241213-15:40:43
+attr datetimef 20241213-154043
+attr experiment truncation-010
+attr inifile truncation.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network truncation
+attr processid 142342
+attr repetition 2
+attr replication #2
+attr resultdir results
+attr runnumber 2
+attr seedset 2
+config cmdenv-performance-display false
+config cmdenv-status-frequency 60s
+config extends truncation
+config **.delta 0.1
+config **.srv.queueLength.result-recording-modes +histogram
+config **.lowLoadSrc.queueLength.result-recording-modes +histogram
+config **.sink.lifeTime.result-recording-modes +histogram
+config ned-path .;../queueinglib
+config network truncation
+config cmdenv-config-name truncation
+config qtenv-default-config truncation
+config repeat 5
+config sim-time-limit 10000s
+config **.vector-recording false
+
+par truncation.srv typename "\"org.omnetpp.queueing.Queue\""
+par truncation.srv capacity -1
+par truncation.srv fifo true
+par truncation.srv serviceTime "1s*truncnormal(1/mu, delta)"
+attr unit s
+scalar truncation.srv busy:timeavg 0.77846860689966
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar truncation.srv queueingTime:mean 0.3201388179466
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar truncation.srv queueingTime:max 3.426066708934
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar truncation.srv queueLength:timeavg 1.9274080515895
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar truncation.srv queueLength:max 25
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic truncation.srv queueLength:histogram
+field count 93876
+field mean 2.979888363373
+field stddev 2.8470612862793
+field min 0
+field max 25
+field sum 279740
+field sqrsum 1594522
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	12570
+bin	1	22541
+bin	2	17116
+bin	3	12211
+bin	4	8686
+bin	5	6126
+bin	6	4350
+bin	7	3185
+bin	8	2212
+bin	9	1458
+bin	10	996
+bin	11	694
+bin	12	524
+bin	13	422
+bin	14	300
+bin	15	165
+bin	16	95
+bin	17	81
+bin	18	57
+bin	19	34
+bin	20	18
+bin	21	15
+bin	22	9
+bin	23	4
+bin	24	5
+bin	25	2
+bin	26	0
+scalar truncation.srv dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par truncation.lowLoadSrc typename "\"org.omnetpp.queueing.Source\""
+par truncation.lowLoadSrc numJobs -1
+par truncation.lowLoadSrc interArrivalTime 1s*exponential(1/lambda)
+attr unit s
+par truncation.lowLoadSrc jobName "\"job\""
+par truncation.lowLoadSrc jobType 0
+par truncation.lowLoadSrc jobPriority 0
+par truncation.lowLoadSrc startTime 0.0954487s
+attr unit s
+par truncation.lowLoadSrc stopTime -1s
+attr unit s
+scalar truncation.lowLoadSrc created:last 60206
+attr interpolationmode none
+attr recordingmode last
+attr title "the number of jobs created, last"
+par truncation.sink typename "\"org.omnetpp.queueing.Sink\""
+par truncation.sink keepJobs false
+scalar truncation.sink generation:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the generation of the arrived jobs, mean"
+scalar truncation.sink generation:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the generation of the arrived jobs, max"
+scalar truncation.sink delaysVisited:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total number of delays visited by arrived jobs, mean"
+scalar truncation.sink delaysVisited:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the total number of delays visited by arrived jobs, max"
+scalar truncation.sink queuesVisited:mean 0.77963258255265
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total number of queues visited by arrived jobs, mean"
+scalar truncation.sink queuesVisited:max 1
+attr interpolationmode none
+attr recordingmode max
+attr title "the total number of queues visited by arrived jobs, max"
+scalar truncation.sink totalServiceTime:mean 0.12930241118394
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent  by arrived jobs, mean"
+attr unit s
+scalar truncation.sink totalServiceTime:max 0.512230143652
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent  by arrived jobs, max"
+attr unit s
+scalar truncation.sink totalDelayTime:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent in delay nodes by arrived jobs, mean"
+attr unit s
+scalar truncation.sink totalDelayTime:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent in delay nodes by arrived jobs, max"
+attr unit s
+scalar truncation.sink totalQueueingTime:mean 0.32014413551384
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent in queues by arrived jobs, mean"
+attr unit s
+scalar truncation.sink totalQueueingTime:max 3.426066708934
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent in queues by arrived jobs, max"
+attr unit s
+scalar truncation.sink lifeTime:mean 0.44944654669778
+attr interpolationmode none
+attr recordingmode mean
+attr title "lifetime of arrived jobs, mean"
+attr unit s
+scalar truncation.sink lifeTime:max 3.585950878288
+attr interpolationmode none
+attr recordingmode max
+attr title "lifetime of arrived jobs, max"
+attr unit s
+statistic truncation.sink lifeTime:histogram
+field count 60204
+field mean 0.44944654669778
+field stddev 0.39052539080296
+field min 4.8596e-06
+field max 3.585950878288
+field sum 27058.479897393
+field sqrsum 21342.904746898
+attr interpolationmode none
+attr recordingmode histogram
+attr title "lifetime of arrived jobs"
+attr unit s
+bin	-inf	0
+bin	0	2015
+bin	0.04	3069
+bin	0.08	3901
+bin	0.12	4344
+bin	0.16	4369
+bin	0.2	4123
+bin	0.24	3765
+bin	0.28	3424
+bin	0.32	3036
+bin	0.36	2746
+bin	0.4	2425
+bin	0.44	2214
+bin	0.48	2037
+bin	0.52	1750
+bin	0.56	1651
+bin	0.6	1499
+bin	0.64	1282
+bin	0.68	1212
+bin	0.72	1114
+bin	0.76	984
+bin	0.8	931
+bin	0.84	872
+bin	0.88	694
+bin	0.92	692
+bin	0.96	612
+bin	1	534
+bin	1.04	510
+bin	1.08	440
+bin	1.12	378
+bin	1.16	367
+bin	1.2	335
+bin	1.24	275
+bin	1.28	261
+bin	1.32	250
+bin	1.36	205
+bin	1.4	190
+bin	1.44	175
+bin	1.48	141
+bin	1.52	123
+bin	1.56	125
+bin	1.6	115
+bin	1.64	90
+bin	1.68	110
+bin	1.72	84
+bin	1.76	67
+bin	1.8	73
+bin	1.84	62
+bin	1.88	51
+bin	1.92	59
+bin	1.96	39
+bin	2	42
+bin	2.04	31
+bin	2.08	31
+bin	2.12	36
+bin	2.16	24
+bin	2.2	19
+bin	2.24	22
+bin	2.28	11
+bin	2.32	16
+bin	2.36	19
+bin	2.4	14
+bin	2.44	13
+bin	2.48	10
+bin	2.52	7
+bin	2.56	8
+bin	2.6	10
+bin	2.64	7
+bin	2.68	8
+bin	2.72	6
+bin	2.76	6
+bin	2.8	1
+bin	2.84	2
+bin	2.88	5
+bin	2.92	1
+bin	2.96	2
+bin	3	2
+bin	3.04	4
+bin	3.08	2
+bin	3.12	3
+bin	3.16	0
+bin	3.2	1
+bin	3.24	0
+bin	3.28	4
+bin	3.32	3
+bin	3.36	3
+bin	3.4	2
+bin	3.44	6
+bin	3.48	2
+bin	3.52	0
+bin	3.56	1
+bin	3.6	0
+par truncation typename "\"truncation\""
+par truncation lambda 6
+par truncation mu 10
+par truncation delta 0.1
+

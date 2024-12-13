@@ -1,0 +1,492 @@
+version 3
+run server_r-1200-4-20241213-15:05:37-128507
+attr configname server_r-1200
+attr datetime 20241213-15:05:37
+attr datetimef 20241213-150537
+attr experiment server_r-1200
+attr inifile server_r.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network server_r
+attr processid 128507
+attr repetition 4
+attr replication #4
+attr resultdir results
+attr runnumber 4
+attr seedset 4
+config cmdenv-performance-display false
+config cmdenv-status-frequency 60s
+config extends server_r
+config **.lambda 12
+config **.net.queueLength.result-recording-modes +histogram
+config **.cpu1.queueLength.result-recording-modes +histogram
+config **.cpu2.queueLength.result-recording-modes +histogram
+config **.disk.queueLength.result-recording-modes +histogram
+config **.sink.lifeTime.result-recording-modes +histogram
+config **.mun 20
+config **.muc 10
+config **.mud 15
+config **.lambda 6
+config ned-path .;../queueinglib
+config network server_r
+config cmdenv-config-name server_r
+config qtenv-default-config server_r
+config repeat 5
+config sim-time-limit 10000s
+config **.vector-recording false
+
+par server_r.src typename "\"org.omnetpp.queueing.Source\""
+par server_r.src numJobs -1
+par server_r.src interArrivalTime 1s*exponential(1/lambda)
+attr unit s
+par server_r.src jobName "\"job\""
+par server_r.src jobType 0
+par server_r.src jobPriority 0
+par server_r.src startTime 0.284346s
+attr unit s
+par server_r.src stopTime -1s
+attr unit s
+scalar server_r.src created:last 119707
+attr interpolationmode none
+attr recordingmode last
+attr title "the number of jobs created, last"
+par server_r.net typename "\"org.omnetpp.queueing.Queue\""
+par server_r.net capacity -1
+par server_r.net fifo true
+par server_r.net serviceTime 1s*exponential(1/mun)
+attr unit s
+scalar server_r.net busy:timeavg 0.59821573645925
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar server_r.net queueingTime:mean 0.076539446698601
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar server_r.net queueingTime:max 1.253035128128
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar server_r.net queueLength:timeavg 0.91623075459493
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar server_r.net queueLength:max 20
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic server_r.net queueLength:histogram
+field count 143901
+field mean 2.0370810487766
+field stddev 2.0705085863817
+field min 0
+field max 20
+field sum 293138
+field sqrsum 1214046
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	28742
+bin	1	45851
+bin	2	27268
+bin	3	16344
+bin	4	9997
+bin	5	6081
+bin	6	3677
+bin	7	2259
+bin	8	1396
+bin	9	888
+bin	10	545
+bin	11	317
+bin	12	193
+bin	13	119
+bin	14	77
+bin	15	51
+bin	16	30
+bin	17	31
+bin	18	25
+bin	19	9
+bin	20	1
+bin	21	0
+scalar server_r.net dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par server_r.r typename "\"org.omnetpp.queueing.Router\""
+par server_r.r routingAlgorithm "\"random\""
+attr enum random,roundRobin,shortestQueue,minDelay
+par server_r.r randomGateIndex "intuniform(0, sizeof(out)-1)"
+par server_r.cpu1 typename "\"org.omnetpp.queueing.Queue\""
+par server_r.cpu1 capacity -1
+par server_r.cpu1 fifo true
+par server_r.cpu1 serviceTime 1s*exponential(1/muc)
+attr unit s
+scalar server_r.cpu1 busy:timeavg 0.59470364505621
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar server_r.cpu1 queueingTime:mean 0.14039220886703
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar server_r.cpu1 queueingTime:max 2.367608623156
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar server_r.cpu1 queueLength:timeavg 0.84010697786029
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar server_r.cpu1 queueLength:max 18
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic server_r.cpu1 queueLength:histogram
+field count 70867
+field mean 1.9089421028123
+field stddev 1.8862518470203
+field min 0
+field max 18
+field sum 135281
+field sqrsum 510381
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	14515
+bin	1	23192
+bin	2	13827
+bin	3	8159
+bin	4	4733
+bin	5	2713
+bin	6	1591
+bin	7	929
+bin	8	510
+bin	9	289
+bin	10	163
+bin	11	83
+bin	12	52
+bin	13	48
+bin	14	32
+bin	15	14
+bin	16	9
+bin	17	6
+bin	18	2
+bin	19	0
+scalar server_r.cpu1 dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par server_r.cpu2 typename "\"org.omnetpp.queueing.Queue\""
+par server_r.cpu2 capacity -1
+par server_r.cpu2 fifo true
+par server_r.cpu2 serviceTime 1s*exponential(1/muc)
+attr unit s
+scalar server_r.cpu2 busy:timeavg 0.59614765872134
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar server_r.cpu2 queueingTime:mean 0.1463159859631
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar server_r.cpu2 queueingTime:max 2.005834080675
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar server_r.cpu2 queueLength:timeavg 0.87594991316527
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar server_r.cpu2 queueLength:max 16
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic server_r.cpu2 queueLength:histogram
+field count 71423
+field mean 1.970079666214
+field stddev 1.9752715761766
+field min 0
+field max 16
+field sum 140709
+field sqrsum 555875
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	14517
+bin	1	23176
+bin	2	13723
+bin	3	8030
+bin	4	4724
+bin	5	2856
+bin	6	1725
+bin	7	1045
+bin	8	674
+bin	9	403
+bin	10	234
+bin	11	142
+bin	12	86
+bin	13	46
+bin	14	27
+bin	15	13
+bin	16	2
+bin	17	0
+scalar server_r.cpu2 dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par server_r.disk typename "\"org.omnetpp.queueing.Queue\""
+par server_r.disk capacity -1
+par server_r.disk fifo true
+par server_r.disk serviceTime 1s*exponential(1/mud)
+attr unit s
+scalar server_r.disk busy:timeavg 0.80012283643851
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "server busy state, timeavg"
+scalar server_r.disk queueingTime:mean 0.27556335245669
+attr interpolationmode none
+attr recordingmode mean
+attr title "queueing time at dequeue, mean"
+attr unit s
+scalar server_r.disk queueingTime:max 2.911456401449
+attr interpolationmode none
+attr recordingmode max
+attr title "queueing time at dequeue, max"
+attr unit s
+scalar server_r.disk queueLength:timeavg 3.2986218091668
+attr interpolationmode sample-hold
+attr recordingmode timeavg
+attr title "queue length, timeavg"
+scalar server_r.disk queueLength:max 41
+attr interpolationmode sample-hold
+attr recordingmode max
+attr title "queue length, max"
+statistic server_r.disk queueLength:histogram
+field count 192509
+field mean 4.6291238331714
+field stddev 4.6342999810007
+field min 0
+field max 41
+field sum 891148
+field sqrsum 8259678
+attr interpolationmode sample-hold
+attr recordingmode histogram
+attr title "queue length"
+bin	-inf	0
+bin	0	18726
+bin	1	33712
+bin	2	27236
+bin	3	22164
+bin	4	17927
+bin	5	14507
+bin	6	11625
+bin	7	9135
+bin	8	7094
+bin	9	5672
+bin	10	4826
+bin	11	4000
+bin	12	3087
+bin	13	2387
+bin	14	1876
+bin	15	1475
+bin	16	1226
+bin	17	1029
+bin	18	851
+bin	19	744
+bin	20	644
+bin	21	554
+bin	22	462
+bin	23	362
+bin	24	293
+bin	25	217
+bin	26	151
+bin	27	110
+bin	28	88
+bin	29	69
+bin	30	51
+bin	31	43
+bin	32	37
+bin	33	29
+bin	34	19
+bin	35	22
+bin	36	21
+bin	37	15
+bin	38	11
+bin	39	6
+bin	40	4
+bin	41	2
+bin	42	0
+scalar server_r.disk dropped:count 0
+attr interpolationmode none
+attr recordingmode count
+attr title "drop event, count"
+par server_r.sink typename "\"org.omnetpp.queueing.Sink\""
+par server_r.sink keepJobs false
+scalar server_r.sink generation:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the generation of the arrived jobs, mean"
+scalar server_r.sink generation:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the generation of the arrived jobs, max"
+scalar server_r.sink delaysVisited:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total number of delays visited by arrived jobs, mean"
+scalar server_r.sink delaysVisited:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the total number of delays visited by arrived jobs, max"
+scalar server_r.sink queuesVisited:mean 1.9994820514106
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total number of queues visited by arrived jobs, mean"
+scalar server_r.sink queuesVisited:max 3
+attr interpolationmode none
+attr recordingmode max
+attr title "the total number of queues visited by arrived jobs, max"
+scalar server_r.sink totalServiceTime:mean 0.21629827906563
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent  by arrived jobs, mean"
+attr unit s
+scalar server_r.sink totalServiceTime:max 1.698141112068
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent  by arrived jobs, max"
+attr unit s
+scalar server_r.sink totalDelayTime:mean 0
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent in delay nodes by arrived jobs, mean"
+attr unit s
+scalar server_r.sink totalDelayTime:max 0
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent in delay nodes by arrived jobs, max"
+attr unit s
+scalar server_r.sink totalQueueingTime:mean 0.49546334791341
+attr interpolationmode none
+attr recordingmode mean
+attr title "the total time spent in queues by arrived jobs, mean"
+attr unit s
+scalar server_r.sink totalQueueingTime:max 3.404499088518
+attr interpolationmode none
+attr recordingmode max
+attr title "the total time spent in queues by arrived jobs, max"
+attr unit s
+scalar server_r.sink lifeTime:mean 0.71176162697906
+attr interpolationmode none
+attr recordingmode mean
+attr title "lifetime of arrived jobs, mean"
+attr unit s
+scalar server_r.sink lifeTime:max 3.600203903939
+attr interpolationmode none
+attr recordingmode max
+attr title "lifetime of arrived jobs, max"
+attr unit s
+statistic server_r.sink lifeTime:histogram
+field count 119703
+field mean 0.71176162697906
+field stddev 0.44162125692313
+field min 0.00771532456
+field max 3.600203903939
+field sum 85200.002034274
+field sqrsum 83987.493472797
+attr interpolationmode none
+attr recordingmode histogram
+attr title "lifetime of arrived jobs"
+attr unit s
+bin	-inf	0
+bin	0	230
+bin	0.05	1186
+bin	0.1	2457
+bin	0.15	3762
+bin	0.2	4818
+bin	0.25	5756
+bin	0.3	6309
+bin	0.35	6700
+bin	0.4	6760
+bin	0.45	6889
+bin	0.5	6573
+bin	0.55	6253
+bin	0.6	5879
+bin	0.65	5545
+bin	0.7	5224
+bin	0.75	4801
+bin	0.8	4298
+bin	0.85	4044
+bin	0.9	3596
+bin	0.95	3251
+bin	1	2956
+bin	1.05	2639
+bin	1.1	2293
+bin	1.15	2067
+bin	1.2	1868
+bin	1.25	1609
+bin	1.3	1477
+bin	1.35	1317
+bin	1.4	1143
+bin	1.45	1060
+bin	1.5	817
+bin	1.55	716
+bin	1.6	612
+bin	1.65	537
+bin	1.7	486
+bin	1.75	426
+bin	1.8	390
+bin	1.85	342
+bin	1.9	336
+bin	1.95	267
+bin	2	252
+bin	2.05	257
+bin	2.1	218
+bin	2.15	169
+bin	2.2	164
+bin	2.25	130
+bin	2.3	149
+bin	2.35	122
+bin	2.4	90
+bin	2.45	75
+bin	2.5	58
+bin	2.55	55
+bin	2.6	44
+bin	2.65	54
+bin	2.7	23
+bin	2.75	30
+bin	2.8	20
+bin	2.85	23
+bin	2.9	15
+bin	2.95	11
+bin	3	10
+bin	3.05	13
+bin	3.1	9
+bin	3.15	5
+bin	3.2	5
+bin	3.25	5
+bin	3.3	0
+bin	3.35	3
+bin	3.4	1
+bin	3.45	1
+bin	3.5	0
+bin	3.55	2
+bin	3.6	1
+bin	3.65	0
+par server_r typename "\"server_r\""
+par server_r lambda 12
+par server_r mun 20
+par server_r muc 10
+par server_r mud 15
+

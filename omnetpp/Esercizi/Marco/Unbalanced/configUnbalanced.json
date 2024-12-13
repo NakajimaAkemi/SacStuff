@@ -1,0 +1,26 @@
+{
+    "scenario_schema":{
+        "delta": {"pattern": "**.delta", "type": "real"}
+    },
+    "metrics": {
+        "MeanResponseTime": {"module": "**.sink", "scalar_name": "lifeTime:mean", "aggr": ["none"]},
+        "MaxResponseTime": {"module": "**.sink", "scalar_name": "lifeTime:max", "aggr": ["none"]},
+        "UtilizationL" : {"module": "**.lowLoadSrv", "scalar_name":"busy:timeavg", "aggr": ["none"]},
+        "UtilizationH" : {"module": "**.highLoadSrv", "scalar_name":"busy:timeavg", "aggr": ["none"]}
+    },
+    "analyses":{
+        "DeltaSens": {
+            "outfile": "results/unbalancedD.data",
+            "scenarios": {
+                "fixed": {},
+                "range": ["delta"]
+            },
+            "metrics": [
+                {"metric": "MeanResponseTime", "aggr": "none"},
+                {"metric": "MaxResponseTime", "aggr": "none"},
+                {"metric": "UtilizationL", "aggr": "none"},
+                {"metric": "UtilizationH", "aggr": "none"}
+            ]
+        }
+    }
+}
