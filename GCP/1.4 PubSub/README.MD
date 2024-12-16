@@ -66,17 +66,6 @@ gcloud pubsub topics list
 gcloud pubsub topics describe %TOPIC%
 ```
 
-
-#### Deploy the app
-Classic web app deployment
-```bash
-gcloud app deploy app.yaml
-```
-
-API deploymnet
-```bash
-gcloud app deploy api.yaml
-```
 ### Subscription 
 *Linux*
 ```bash
@@ -104,3 +93,13 @@ gcloud pubsub subscriptions pull ${SUBSCRIPTION_NAME}
 gcloud pubsub subscriptions pull %SUBSCRIPTION_NAME%
 ```
 
+#### Deploy the app
+Classic web app deployment
+```bash
+gcloud app deploy app.yaml
+```
+
+API deploymnet
+```bash
+gcloud app deploy api.yaml
+```
