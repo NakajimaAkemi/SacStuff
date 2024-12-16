@@ -80,8 +80,13 @@ gcloud pubsub subscriptions create %SUBSCRIPTION_NAME% --topic %TOPIC%
 
 ### Message 
 #### Sending
+*Linux*
 ```bash
-gcloud pubsub topics publish testTopic --attribute=from="cli" --message="Test Message"
+gcloud pubsub topics publish  ${TOPIC} --attribute=from="cli" --message="Test Message"
+```
+*Windows*
+```bash
+gcloud pubsub topics publish  %TOPIC% --attribute=from="cli" --message="Test Message"
 ```
 #### Pulling
 *Linux*
