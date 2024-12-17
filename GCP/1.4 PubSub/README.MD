@@ -97,7 +97,7 @@ gcloud pubsub subscriptions pull ${SUBSCRIPTION_NAME}
 ```bash
 gcloud pubsub subscriptions pull %SUBSCRIPTION_NAME%
 ```
-### Publisher script
+### Publisher script publisher.py
 ```python
 #!/usr/bin/python3
 import timefrom datetime 
@@ -110,6 +110,19 @@ project_id=os.environ['PROJECT_ID'] if os.environ['TOPIC'] else 'myprj'
 publisher = pubsub_v1.PublisherClient()
 topic_path = publisher.topic_path(project_id, topic)
 print(topic_path)
+
+def get_cpu_temp():
+  with open("/sys/class/thermal/thermal_zone0/temp") as f:
+    return float(f.read())/ 1000 
+def notify_cpu_temp(temp):
+    now = datetime.now()
+    data={'timestamp': now.timestamp(), 'time': str(now), 'temperature': temp}
+    res = publisher.publish(topic_path, json.dumps(data).encode('utf-8'))
+    print(data, res.result())
+if __name__=='__main__':
+    while True:
+          notify_cpu_temp(get_cpu_temp())
+          time.sleep(update_interval)
 ```
 
 
