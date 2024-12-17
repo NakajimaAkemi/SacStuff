@@ -101,21 +101,32 @@ gcloud pubsub subscriptions pull %SUBSCRIPTION_NAME%
 In the repository we can find the `publisher.py` script which fetches the env variables and then send data to the topic with the call `publisher.publish(topic, data)`.
 
 ### Subscriber script ingestion.py
-```python
-#!/usr/bin/python3
-import os
-import json
-from google.cloud import pubsub_v1
-subscription_name=os.environ['SUBSCRIPTION_NAME'] if os.environ['SUBSCRIPTION_NAME'] else 'cpu_temperature'
-project_id=os.environ['PROJECT_ID'] if os.environ['PROJECT_ID'] else 'myprj'
-subscriber = pubsub_v1.SubscriberClient()
-subscription_path = subscriber.subscription_path(project_id, subscription_name)
-if __name__=='__main__':
-      pull = subscriber.subscribe(subscription_path, callback=callback)
-      try:
-          pull.result(timeout=30)
-      except:
-          pull.cancel()
+The other script `ingestion.py` will listen to the topic with a timeout and saves everything in the firestore.
+
+
+## Publish and subscribe token based
+We create another topic and then set it up with HTTPS webhook and it will the default service for app engine.
+
+*Linux*
+```bash
+export TOPIC2=cpu_temperature_alert
+gcloud pubsub topics create ${TOPIC2}
+gcloud pubsub topics describe ${TOPIC2}
+export TOKEN="123token"
+export SUBSCRIPTION_NAME2="cpu_alert_sub"
+gcloud pubsub subscriptions create ${SUBSCRIPTION_NAME2} --topic ${TOPIC2} --push-endpoint   
+ "https://${PROJECT_ID}.appspot.com/pubsub/push?token=${TOKEN}" --ack-deadline 10
+```
+
+*Windows*
+```bash
+set TOPIC2=cpu_temperature_alert
+gcloud pubsub topics create %TOPIC2%
+gcloud pubsub topics describe %TOPIC2%
+set TOKEN="123token"
+set SUBSCRIPTION_NAME2="cpu_alert_sub"
+gcloud pubsub subscriptions create %SUBSCRIPTION_NAME2% --topic %TOPIC2% --push-endpoint   
+ "https://%PROJECT_ID%.appspot.com/pubsub/push?token=%TOKEN%" --ack-deadline 10
 ```
 
 
