@@ -98,14 +98,19 @@ gcloud pubsub subscriptions pull ${SUBSCRIPTION_NAME}
 gcloud pubsub subscriptions pull %SUBSCRIPTION_NAME%
 ```
 ### Publisher script
+```python
 #!/usr/bin/python3
 import timefrom datetime 
 import datetimeimport json
-import osfrom google.cloud 
-import pubsub_v1
-update_interval=5.0topic=os.environ['TOPIC'] if os.environ['TOPIC'] else 'cpu_temperature'project_id=os.environ['PROJECT_ID'] if os.environ['TOPIC'] else 'myprj'publisher = pubsub_v1.PublisherClient()topic_path = publisher.topic_path(project_id, topic)print(topic_path)
-
-
+import os
+from google.cloud import pubsub_v1
+update_interval=5.0
+topic=os.environ['TOPIC'] if os.environ['TOPIC'] else 'cpu_temperature'
+project_id=os.environ['PROJECT_ID'] if os.environ['TOPIC'] else 'myprj'
+publisher = pubsub_v1.PublisherClient()
+topic_path = publisher.topic_path(project_id, topic)
+print(topic_path)
+```
 
 
 
