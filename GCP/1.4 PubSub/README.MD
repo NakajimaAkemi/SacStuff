@@ -125,7 +125,23 @@ if __name__=='__main__':
           time.sleep(update_interval)
 ```
 
-
+### Subscriber script ingestion.py
+```python
+#!/usr/bin/python3
+import os
+import json
+from google.cloud import pubsub_v1
+subscription_name=os.environ['SUBSCRIPTION_NAME'] if os.environ['SUBSCRIPTION_NAME'] else 'cpu_temperature'
+project_id=os.environ['PROJECT_ID'] if os.environ['PROJECT_ID'] else 'myprj'
+subscriber = pubsub_v1.SubscriberClient()
+subscription_path = subscriber.subscription_path(project_id, subscription_name)
+if __name__=='__main__':
+      pull = subscriber.subscribe(subscription_path, callback=callback)
+      try:
+          pull.result(timeout=30)
+      except:
+          pull.cancel()
+```
 
 
 #### Deploy the app
