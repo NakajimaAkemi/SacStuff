@@ -3,12 +3,12 @@
 echo "Forniscimi il PROJECT_ID"
 read pid
 export PROJECT_ID=$pid
-echo "Variabile d\'ambiente PROJECT_ID settata a ${PROJECT_ID}"
+echo "Variabile d'ambiente PROJECT_ID settata a ${PROJECT_ID}"
 
-echo "Forniscimi ora il NAME dell\'utente per cui creerò le credentziali"
+echo "Forniscimi ora il NAME dell'utente per cui creerò le credentziali"
 read n
 export NAME=$n
-echo "Variabile d\'ambiente NAME settata a ${NAME}" 
+echo "Variabile d'ambiente NAME settata a ${NAME}" 
 
 gcloud projects create ${PROJECT_ID} --set-as-default
 
@@ -19,6 +19,7 @@ gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@$
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 
 touch setenv
-echo "PROJECT_ID=${PROJECT_ID}" >> setenv
-echo "NAME=${NAME}" >> setenv
-echo "GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}" >> setenv
+echo "#!/bin/bash"
+echo "export PROJECT_ID=${PROJECT_ID}" >> setenv
+echo "export NAME=${NAME}" >> setenv
+echo "export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}" >> setenv
