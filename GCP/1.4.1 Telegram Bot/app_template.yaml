@@ -1,0 +1,9 @@
+runtime: python39
+handlers:
+- url: /.*
+  script: auto
+env_variables:
+  PUBSUB_VERIFICATION_TOKEN: '${TOKEN}'
+  PROJECT_ID: '${PROJECT_ID}'
+  TOPIC: '${TOPIC2}'
+  BOT_TOKEN: '${BOT_TOKEN}'
