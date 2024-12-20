@@ -68,7 +68,7 @@ set FUNCTION=get_status
 gcloud functions deploy %FUNCTION% --runtime python39--trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
 ```
 
-### Cli testing
+### CLI testing
 *Linux*
 ```bash
 gcloud functions call ${FUNCTION}
