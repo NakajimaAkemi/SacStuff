@@ -54,7 +54,34 @@ Each document contains one or more Value objects
 }
 ```
 
+## Deployment and testing
+With this command the deploy our function.
+*Linux* 
+```bash
+export FUNCTION=get_status
+gcloud functions deploy ${FUNCTION} --runtime python39--trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
+```
 
+*Windows*
+```bash
+set FUNCTION=get_status
+gcloud functions deploy %FUNCTION% --runtime python39--trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
+```
 
+### Cli testing
+*Linux*
+```bash
+gcloud functions call ${FUNCTION}
+```
+*Windows*
+```bash
+gcloud functions call %FUNCTION%
+```
+### HTTP request
+*Linux*
+```bash
+export URL=$(gcloud functions describe $FUNCTION | grep url: |awk '{print $2}')
+curl -m 70 -X POST  $URL -H "Authorization: bearer $(gcloud auth print-identity-token)"
+```bash
 
 
