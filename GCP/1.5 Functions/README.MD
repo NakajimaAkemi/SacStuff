@@ -13,12 +13,22 @@ def my_function(event_data, context) where:
  - `context` is the metadata
 
 ## HTTP trigger function (unauthenticated)
-```
+*Linux*
+```bash
 gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http --allow-unauthenticated
 ```
-#### Url structure
+*Windows*
+```bash
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow unauthenticated
 ```
+#### Url structure
+*Linux*
+```bash
 https://${REGION-PROJECT_ID}.cloudfunctions.net/${FUNCTION}"
+```
+*Windows*
+```bash
+https://%REGION-PROJECT_ID%.cloudfunctions.net/%FUNCTION%"
 ```
 #### Cli invocation
 ```
@@ -82,6 +92,13 @@ gcloud functions call %FUNCTION%
 ```bash
 export URL=$(gcloud functions describe $FUNCTION | grep url: |awk '{print $2}')
 curl -m 70 -X POST  $URL -H "Authorization: bearer $(gcloud auth print-identity-token)"
+```
+*Windows*
+```bash
+FOR /F "tokens=2 delims=: " %i IN ('gcloud functions describe %FUNCTION% ^| findstr "url:"') DO SET URL=%i
+SET URL=%URL: =%
+FOR /F "delims=" %i IN ('gcloud auth print-identity-token') DO SET TOKEN=%i
+curl -m 70 -X POST %URL% -H "Authorization: bearer %TOKEN%"
 ```
 
 
