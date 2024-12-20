@@ -1,0 +1,11 @@
+runtime: python39  # Usa Python 3.9
+service: api  # Il nome del servizio, per esempio 'api'
+
+entrypoint: gunicorn api:app  # Usa gunicorn per eseguire 'api.py', dove 'app' è l'oggetto Flask
+
+handlers:
+  - url: /static
+    static_dir: static  # Cartella dei file statici
+  - url: /.*
+    secure: always  # Forza HTTPS
+    script: auto  # Carica automaticamente lo script Python

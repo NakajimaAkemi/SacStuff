@@ -1,0 +1,123 @@
+swagger: '2.0'
+info:
+  title: UaaS
+  version: '1.0'
+  description: 'Umarell as a Service'
+host: api.server.test
+basePath: '/api/v1'
+schemes:
+  - https
+
+paths:
+  /clean:
+    post:
+      description: 'Cleans the database'
+      responses:
+        '200':
+          description: OK
+  
+  /cantiere/{idcantiere}:
+    parameters:
+      - name: idcantiere
+        in: path
+        required: true
+        description: 'id cantiere'
+        type: integer
+
+    post:
+      description: 'Adds a cantiere'
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: cantieredata
+          required: true
+          description: 'Cantiere details'
+          schema:
+            $ref: '#/definitions/Cantiere'
+      responses:
+        '200':
+          description: 'Cantiere added'
+        '409':
+          description: 'Cantiere already exists'
+        '400':
+          description: 'Got invalid data'
+    
+    get:
+      description: 'Gets a cantiere'
+      responses:
+        '200':
+          description: 'Got a cantiere'
+          schema:
+            $ref: "#/definitions/Cantiere"
+        '404':
+          description: 'Cantiere not found'
+  
+  /umarell/{idumarell}:
+    parameters:
+      - name: idumarell
+        in: path
+        required: true
+        description: "id umarell"
+        type: integer
+    
+    post:
+      description: 'Adds an umarell'
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: umarelldata
+          required: true
+          description: 'Umarell details'
+          schema:
+            $ref: '#/definitions/Umarell'
+      responses:
+        '200':
+          description: 'Added an umarell'
+        '409':
+          description: 'Umarell already exists'
+        '400':
+          description: 'Invalid data'
+        
+    get:
+      description: 'Gets an umarell'
+      responses:
+        '200':
+          description: 'Got an umarell'
+          schema:
+            $ref: '#/definitions/Umarell'
+        '404':
+          description: 'Umarell not found'
+
+definitions:
+  Cantiere:
+    type: object
+    required:
+      - indirizzo
+      - cap
+    properties: 
+      indirizzo: 
+        type: string
+      cap:
+        type: integer
+        minimum: 0
+        maximum: 99999
+    
+  Umarell:
+    type: object
+    required:
+      - nome
+      - cognome
+      - cap
+    properties: 
+      nome:
+        type: string
+      cognome:
+        type: string
+
+      cap:
+        type: integer
+        minimum: 0
+        maximum: 99999
+    

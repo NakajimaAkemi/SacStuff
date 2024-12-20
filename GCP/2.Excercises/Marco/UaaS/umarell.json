@@ -1,0 +1,14 @@
+[
+    {
+      "id" : 1,
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "cap": 41125
+    },
+    {
+      "id" : 2,
+      "nome": "Walter",
+      "cognome": "Nomadi",
+      "cap": 41124
+    }
+]

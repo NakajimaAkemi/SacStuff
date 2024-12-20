@@ -19,7 +19,7 @@ gcloud iam service-accounts keys create credentials.json --iam-account ${NAME}@$
 export GOOGLE_APPLICATION_CREDENTIALS="$(pwd)/credentials.json"
 
 touch setenv
-echo "#!/bin/bash"
+echo "#!/bin/bash" >> setenv
 echo "export PROJECT_ID=${PROJECT_ID}" >> setenv
 echo "export NAME=${NAME}" >> setenv
 echo "export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}" >> setenv
