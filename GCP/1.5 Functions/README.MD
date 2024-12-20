@@ -30,17 +30,32 @@ https://${REGION-PROJECT_ID}.cloudfunctions.net/${FUNCTION}"
 ```bash
 https://%REGION-PROJECT_ID%.cloudfunctions.net/%FUNCTION%"
 ```
-#### Cli invocation
-```
+#### CLI invocation
+*Linux*
+```bash
 gcloud functions call ${FUNCTION_NAME}   --data '{"name":"Boba Fett"}'
 ```
+*Windows*
+```bash
+gcloud functions call %FUNCTION_NAME%   --data '{"name":"Boba Fett"}'
+```
 ## PubSub trigger
+*Linux*
 ```
 google.pubsub.${TOPIC}.publish
 ```
-## Firestore triggers
+*Windows*
 ```
+google.pubsub.%TOPIC%.publish
+```
+## Firestore triggers
+*Linux*
+```bash
 projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
+```
+*Windows*
+```
+projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
 ```
 The wildcard can be used only on documents
 
@@ -51,9 +66,15 @@ The wildcard can be used only on documents
 
 
 Typical deployment command:
+*Linux*
 ```bash
 gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}"--trigger-resource "${DOCUMENT_PATH}"
 ```
+*Windows*
+```bash
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%"--trigger-resource "%DOCUMENT_PATH%"
+```
+
 ### Event structure
 Each document contains one or more Value objects
 ```bash
