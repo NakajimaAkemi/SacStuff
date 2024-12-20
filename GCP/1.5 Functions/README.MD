@@ -81,8 +81,7 @@ gcloud functions call %FUNCTION%
 *Linux*
 ```bash
 export URL=$(gcloud functions describe $FUNCTION | grep url: |awk '{print $2}')
-
 curl -m 70 -X POST  $URL -H "Authorization: bearer $(gcloud auth print-identity-token)"
-```bash
+```
 
 
