@@ -23,3 +23,97 @@ echo "#!/bin/bash" >> setenv
 echo "export PROJECT_ID=${PROJECT_ID}" >> setenv
 echo "export NAME=${NAME}" >> setenv
 echo "export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}" >> setenv
+
+touch requirements.txt
+
+echo -e "flask == 2.3.3
+flask-restful
+WTForms
+requests
+google-cloud-firestore
+google-cloud-pubsub 
+gunicorn
+numpy" >> requirements.txt
+
+touch main.py
+touch api.py
+touch app.yaml
+touch api.yaml
+touch dao.py
+
+echo -e "runtime: python39
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  secure: always
+  script: auto" >> app.yaml
+
+echo -e "runtime: python39
+service: app
+entrypoint: gunicorn main:app
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  secure: always
+  script: auto" >> api.yaml
+
+echo -e "from flask import Flask, request, render_template
+
+app = Flask(__name__,
+    static_folder='static',
+    static_url_path='/static'
+)
+
+@app.route('/', methods=['GET'])
+def homepage():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)" >> main.py
+
+echo -e "from flask import Flask, request
+from flask_restful import Resource, Api
+from typing import Optional
+
+app = Flask(__name__,
+            static_folder='static',
+            static_url_path='/static'
+            )
+
+api = Api(app)
+base_url = '/api/v1'
+
+class changeme(Resource):
+    def get():
+        pass
+    
+    def post():
+        pass
+    
+    def put():
+        pass
+    
+    def delete():
+        pass
+
+api.add_resource(changeme, f'{base_url}/changeme')
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
+" >> api.py
+
+echo -e "from google.cloud import firestore
+
+class changeme(object):
+    def __init__(self):
+        self.db = firestore.Client()" >> dao.py
+
+python3 -m venv env
+. env/bin/activate
+pip install -r requirements.txt
+deactivate
+
+echo "-----------------------------------------------------------------------------------------------------------------------------------------------------------"
+echo "Progetto tutto pronto, ricordati di attivare il virtual environment! (hint: . env/bin/activate)"
