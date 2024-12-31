@@ -1,17 +1,36 @@
 from flask import Flask, render_template_string,render_template, request
 from dao_gcp import DAO
 from myForm import MyForm
+import json
+import os
+from google.cloud import pubsub_v1
+
 
 app = Flask(__name__, static_url_path='/static', static_folder='static') ## instanzia oggetto Flask
 
 dao = DAO()
+
+topic_name=os.environ['TOPIC'] if 'TOPIC' in os.environ.keys() else 'NUOVO-CANTIERE'
+project_id=os.environ['PROJECT_ID'] if 'PROJECT_ID' in os.environ.keys()  else 'progettinoprovinosecondo'
+
+publisher = pubsub_v1.PublisherClient()
+topic_path = publisher.topic_path(project_id, topic_name)
+
 
 ## dictionary to object
 class Struct:
     def __init__(self,**entries):
         self.__dict__.update(entries)
 
-
+##### Item list route
+@app.route('/publish', methods=['GET'])
+def get_items():
+    items = dao.get_items_with_identifier()
+    if items is not None:
+        publisher.publish(topic_path, json.dumps("Testing message").encode('utf-8'))
+        return render_template('index.html')
+    else:
+        return render_template('index.html')
 
 
 ##### Item list route
@@ -19,8 +38,11 @@ class Struct:
 def get_items():
     items = dao.get_items_with_identifier()
     if items is not None:
+        #publisher.publish(topic_path, json.dumps("STO GUARDANDO LA LISTA DI PERSONE").encode('utf-8'))
+        #publisher.publish(topic_path, json.dumps("STO GUARDANDO LE"))
         return render_template('itemlist.html', items=items)
     else:
+        publisher.publish(topic_path, json.dumps("STO GUARDANDO LE").encode('utf-8'))
         return render_template('itemlist.html', items=[])
 
 

@@ -7,6 +7,18 @@ api = Api(app)
 dao= DAO()
 basePath = '/api/v1'
 
+
+
+project_id = 'exam'
+#topic_name=os.environ['TOPIC'] if 'TOPIC' in os.environ.keys() else 'cpu_temperature'
+#topic_name2=os.environ['TOPIC2'] if 'TOPIC2' in os.environ.keys() else 'cpu_temperature_alert'
+#project_id=os.environ['PROJECT_ID'] if 'PROJECT_ID' in os.environ.keys()  else 'myprj'
+
+publisher = pubsub_v1.PublisherClient()
+topic_path = publisher.topic_path(project_id, topic_name)
+topic_path2 = publisher.topic_path(project_id, topic_name2)
+publisher.publish(topic_path2, json.dumps(data).encode('utf-8'))
+
 class ItemResource(Resource):
     def get(self,iditem):
         item = dao.get_item(iditem)
