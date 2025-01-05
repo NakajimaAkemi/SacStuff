@@ -80,13 +80,14 @@ google.pubsub.%TOPIC%.publish
 We can trigger a function with an action over a firestore document:
 *Linux*
 ```bash
-expose EVENT_TYPE = projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
+expose EVENT_TYPE = providers/cloud.firestore/eventTypes/{document_wildcard}
+projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
 expose DOCUMENT_PATH = 
 ```
 *Windows*
-```
-set EVENT_TYPE = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
-set DOCUMENT_PATH = 
+```bash
+set EVENT_TYPE = providers/cloud.firestore/eventTypes/{action_wildcard}
+set DOCUMENT_PATH = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document}
 ```
 The wildcard can be used only on documents:
  - `document.create`
@@ -98,11 +99,11 @@ The wildcard can be used only on documents:
 Typical deployment command:
 *Linux*
 ```bash
-gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}" --trigger-resource "${DOCUMENT_PATH}"
+gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}" --trigger-resource "${DOCUMENT_PATH}" --docker-registry=artifact-registry --no-gen2 
 ```
 *Windows*
 ```bash
-gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%"
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%" --docker-registry=artifact-registry --no-gen2
 ```
 
 
