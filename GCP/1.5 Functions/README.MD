@@ -44,9 +44,10 @@ gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --
 ```
 #### Url structure
 The url is structured as follows:
- - REGION: where we deployed the project
- - PROJECT_ID
- - FUNCTION
+ - `REGION`: where we deployed the project
+ - `PROJECT_ID`
+ - `FUNCTION`
+
 *Linux*
 ```bash
 https://${REGION-PROJECT_ID}.cloudfunctions.net/${FUNCTION}"
