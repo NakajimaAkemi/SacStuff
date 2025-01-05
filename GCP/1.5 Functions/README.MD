@@ -1,5 +1,5 @@
 # Google functions
-The functions feature basically allows us to define a function (in our case Python) that is executed in response to a trigger such as PubSub or HTTP hook. Our function is as follows
+The functions feature basically allows us to define a function (in our case Python) that is executed in response to a trigger such as PubSub or HTTP hook, our function is as follows:
 
 ```python
 def my_function(event_data, context):
