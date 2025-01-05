@@ -36,11 +36,11 @@ set RUNTIME=python39
 ## HTTP trigger function (unauthenticated)
 *Linux*
 ```bash
-gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http --allow-unauthenticated
+gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http --allow-unauthenticated --docker-registry=artifact-registry --no-gen2
 ```
 *Windows*
 ```bash
-gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow unauthenticated
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow unauthenticated --docker-registry=artifact-registry --no-gen2
 ```
 #### Url structure
 The url is structured as follows:
@@ -105,43 +105,5 @@ gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-even
 gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%" --docker-registry=artifact-registry --no-gen2
 ```
 
-
-
-## Deployment and testing
-With this command the deploy our function.
-*Linux* 
-```bash
-export FUNCTION=get_status
-gcloud functions deploy ${FUNCTION} --runtime python39--trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
-```
-
-*Windows*
-```bash
-set FUNCTION=get_status
-gcloud functions deploy %FUNCTION% --runtime python39 --trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
-```
-
-### CLI testing
-*Linux*
-```bash
-gcloud functions call ${FUNCTION}
-```
-*Windows*
-```bash
-gcloud functions call %FUNCTION%
-```
-### HTTP request
-*Linux*
-```bash
-export URL=$(gcloud functions describe $FUNCTION | grep url: |awk '{print $2}')
-curl -m 70 -X POST  $URL -H "Authorization: bearer $(gcloud auth print-identity-token)"
-```
-*Windows*
-```bash
-FOR /F "tokens=2 delims=: " %i IN ('gcloud functions describe %FUNCTION% ^| findstr "url:"') DO SET URL=%i
-SET URL=%URL: =%
-FOR /F "delims=" %i IN ('gcloud auth print-identity-token') DO SET TOKEN=%i
-curl -m 70 -X POST %URL% -H "Authorization: bearer %TOKEN%"
-```
 
 
