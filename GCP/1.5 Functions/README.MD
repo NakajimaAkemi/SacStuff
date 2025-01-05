@@ -77,19 +77,18 @@ google.pubsub.${TOPIC}.publish
 google.pubsub.%TOPIC%.publish
 ```
 ## Firestore triggers
-We can trigger a function with an action over a firestore document:
+We can trigger a function with an action over a firestore document, we need define the 
 *Linux*
 ```bash
-expose EVENT_TYPE = providers/cloud.firestore/eventTypes/{document_wildcard}
-projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
-expose DOCUMENT_PATH = 
+expose EVENT_TYPE = providers/cloud.firestore/eventTypes/action_wildcard
+expose DOCUMENT_PATH = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
 ```
 *Windows*
 ```bash
-set EVENT_TYPE = providers/cloud.firestore/eventTypes/{action_wildcard}
-set DOCUMENT_PATH = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document}
+set EVENT_TYPE = providers/cloud.firestore/eventTypes/action_wildcard
+set DOCUMENT_PATH = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
 ```
-The wildcard can be used only on documents:
+The action wildcard can be:
  - `document.create`
  - `document.update`
  - `document.delete`
