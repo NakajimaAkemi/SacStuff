@@ -77,16 +77,18 @@ google.pubsub.${TOPIC}.publish
 google.pubsub.%TOPIC%.publish
 ```
 ## Firestore triggers
+We can trigger a function with an action over a firestore document:
 *Linux*
 ```bash
-projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
+expose EVENT_TYPE = projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
+expose DOCUMENT_PATH = 
 ```
 *Windows*
 ```
-projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
+set EVENT_TYPE = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
+set DOCUMENT_PATH = 
 ```
-The wildcard can be used only on documents
-
+The wildcard can be used only on documents:
  - `document.create`
  - `document.update`
  - `document.delete`
@@ -96,22 +98,14 @@ The wildcard can be used only on documents
 Typical deployment command:
 *Linux*
 ```bash
-gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}"--trigger-resource "${DOCUMENT_PATH}"
+gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}" --trigger-resource "${DOCUMENT_PATH}"
 ```
 *Windows*
 ```bash
-gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%"--trigger-resource "%DOCUMENT_PATH%"
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%"
 ```
 
-### Event structure
-Each document contains one or more Value objects
-```bash
-{
-"oldValue": { // Update and Delete operations onlyDocument object with pre-operation document snapshot},
-"updateMask": { // Update operations onlyDocumentMask object that lists changed fields.},
-"value": {Document object with post-operation document snapshot}
-}
-```
+
 
 ## Deployment and testing
 With this command the deploy our function.
@@ -124,7 +118,7 @@ gcloud functions deploy ${FUNCTION} --runtime python39--trigger-http –allow-un
 *Windows*
 ```bash
 set FUNCTION=get_status
-gcloud functions deploy %FUNCTION% --runtime python39--trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
+gcloud functions deploy %FUNCTION% --runtime python39 --trigger-http –allow-unauthenticated --docker-registry=artifact-registry --no-gen2
 ```
 
 ### CLI testing
