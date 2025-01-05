@@ -1,16 +1,27 @@
 # Google functions
-The functions are executed in response of a trigger which can be in many forms such as PubSub or event HTTPS, each Event has Event Data and Context object.
+The functions feature basically allows us to define a functions that is executed in response to a trigger such as PubSub or HTTP hook. In this case we're working with a python runtime so we will define a function in our script.
+
+```python
+def my_function(event_data, context) where:
+ # - `event_data` is the payload in form of a dictionary
+ # - `context` is the metadata
+```
+
+> [!WARNING]
+> Firestore does not support flask 3.0 we will work with Flask 2.3.3
+
 
 ```text
 flask==2.3.3
 google-cloud-firestore
 numpy
 ```
-> [!WARNING]
-> Firestore does not support flask 3.0
-def my_function(event_data, context) where:
- - `event_data` is the payload in form of a dictionary
- - `context` is the metadata
+
+
+
+
+
+
 
 ## HTTP trigger function (unauthenticated)
 *Linux*
