@@ -19,11 +19,18 @@ google-cloud-firestore
 numpy
 ```
 
-In 
-
-
-
-
+## ENV Variables to setup
+These variables are needed to setup our functions.
+*Linux*
+```bash
+export FUNCTION=my_function
+export RUNTIME=python39
+```
+*Windows*
+```bash
+set FUNCTION=my_function
+set RUNTIME=python39
+```
 
 
 ## HTTP trigger function (unauthenticated)
@@ -36,6 +43,10 @@ gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http
 gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow unauthenticated
 ```
 #### Url structure
+The url is structured as follows:
+ - REGION: where we deployed the project
+ - PROJECT_ID
+ - FUNCTION
 *Linux*
 ```bash
 https://${REGION-PROJECT_ID}.cloudfunctions.net/${FUNCTION}"
@@ -53,6 +64,8 @@ gcloud functions call ${FUNCTION_NAME}   --data '{"name":"Boba Fett"}'
 ```bash
 gcloud functions call %FUNCTION_NAME%   --data '{"name":"Boba Fett"}'
 ```
+
+
 ## PubSub trigger
 *Linux*
 ```
