@@ -12,13 +12,14 @@ Each function has:
 > [!WARNING]
 > Firestore does not support flask 3.0 we will work with Flask 2.3.3
 
-
+Our `requirements.txt` will look like this:
 ```text
 flask==2.3.3
 google-cloud-firestore
 numpy
 ```
 
+In 
 
 
 
