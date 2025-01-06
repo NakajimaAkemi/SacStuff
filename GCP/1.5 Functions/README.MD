@@ -5,15 +5,17 @@ The functions feature basically allows us to define a function (in our case Pyth
 def my_function(event_data, context):
     # your code goes here
 ```
-Or for the http triggered event.
-```python
-def my_function(event_data, context):
-    # your code goes here
-```
-
 Each function has:
  - `event_data`: payload in form of a dictionary
  - `context`: metadata
+
+Or for the http triggered event.
+```python
+def my_function(request):
+    # your code goes here
+```
+
+
 
 > [!WARNING]
 > Firestore does not support flask 3.0 we will work with Flask 2.3.3
