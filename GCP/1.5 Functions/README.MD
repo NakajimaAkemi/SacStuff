@@ -68,7 +68,8 @@ gcloud functions call %FUNCTION_NAME%   --data '{"name":"Boba Fett"}'
 
 
 ## PubSub trigger
-Should be an event type.
+Should be an event type, i dunno.
+
 *Linux*
 ```
 google.pubsub.${TOPIC}.publish
