@@ -5,6 +5,12 @@ The functions feature basically allows us to define a function (in our case Pyth
 def my_function(event_data, context):
     # your code goes here
 ```
+Or for the http triggered event.
+```python
+def my_function(event_data, context):
+    # your code goes here
+```
+
 Each function has:
  - `event_data`: payload in form of a dictionary
  - `context`: metadata
@@ -36,11 +42,11 @@ set RUNTIME=python39
 ## HTTP trigger function (unauthenticated)
 *Linux*
 ```bash
-gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http --allow-unauthenticated --docker-registry=artifact-registry --no-gen2
+gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http --allow-unauthenticated --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 *Windows*
 ```bash
-gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow-unauthenticated --docker-registry=artifact-registry --no-gen2
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow-unauthenticated --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 #### Url structure
 The url is structured as follows:
@@ -100,11 +106,11 @@ The action wildcard can be:
 Typical deployment command:
 *Linux*
 ```bash
-gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}" --trigger-resource "${DOCUMENT_PATH}" --docker-registry=artifact-registry --no-gen2 
+gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-event "${EVENT_TYPE}" --trigger-resource "${DOCUMENT_PATH}" --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 *Windows*
 ```bash
-gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%" --docker-registry=artifact-registry --no-gen2
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%" --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 
 
