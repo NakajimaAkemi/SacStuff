@@ -40,7 +40,7 @@ gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-http
 ```
 *Windows*
 ```bash
-gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow unauthenticated --docker-registry=artifact-registry --no-gen2
+gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%  --trigger-http --allow-unauthenticated --docker-registry=artifact-registry --no-gen2
 ```
 #### Url structure
 The url is structured as follows:
