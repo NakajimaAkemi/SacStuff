@@ -23,12 +23,12 @@ numpy
 These variables are needed to setup our functions.
 *Linux*
 ```bash
-export FUNCTION=my_function
+export FUNCTION_NAME=my_function
 export RUNTIME=python39
 ```
 *Windows*
 ```bash
-set FUNCTION=my_function
+set FUNCTION_NAME=my_function
 set RUNTIME=python39
 ```
 
@@ -71,12 +71,12 @@ gcloud functions call %FUNCTION_NAME%   --data '{"name":"Boba Fett"}'
 Should be an event type, i dunno.
 
 *Linux*
-```
-google.pubsub.${TOPIC}.publish
+```bash
+gcloud functions deploy ${FUNCTION_NAME} --runtime ${RUNTIME} --trigger-topic ${TOPIC} --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 *Windows*
 ```
-google.pubsub.%TOPIC%.publish
+gcloud functions deploy %FUNCTION_NAME% --runtime %RUNTIME% --trigger-topic %TOPIC% --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 ## Firestore triggers
 We can trigger a function with an action over a firestore document, we need define the 
