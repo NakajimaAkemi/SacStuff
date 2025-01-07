@@ -1,0 +1,20 @@
+{
+    "scenario_schema":{
+        "frac" : {"pattern": "**.frac", "type": "real"}
+    },
+    "metrics": {
+        "avgResponseTime" : {"module": "**.sink", "scalar_name": "lifeTime:mean", "aggr": ["none"]}
+    },
+    "analyses":{
+        "DeltaSens": {
+            "outfile": "results/esame_delay.data",
+            "scenarios": {
+                "fixed": {},
+                "range": ["frac"]
+            },
+            "metrics": [
+                {"metric": "avgResponseTime", "aggr":"none"}
+            ]
+        }
+    }
+}
