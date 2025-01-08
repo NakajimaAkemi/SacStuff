@@ -1,9 +1,0 @@
-runtime: python39
-handlers:
-- url: /.*
-  script: auto
-env_variables:
-  PUBSUB_VERIFICATION_TOKEN: '123token'
-  PROJECT_ID: 'rlsac2024'
-  TOPIC: 'cpu_temperature_alert'
-  BOT_TOKEN: '5911142810:AAEQ1HUOoWrtnZQnGwp0qw95d7q_UT2rMLU'
