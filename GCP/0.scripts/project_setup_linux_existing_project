@@ -10,6 +10,13 @@ read n
 export NAME=$n
 echo "Variabile d'ambiente NAME settata a ${NAME}" 
 
+export GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/credentials.json
+
+touch setenv
+echo "#!/bin/bash" >> setenv
+echo "export PROJECT_ID=${PROJECT_ID}" >> setenv
+echo "export NAME=${NAME}" >> setenv
+echo "export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}" >> setenv
 touch requirements.txt
 
 echo -e "flask == 2.3.3
