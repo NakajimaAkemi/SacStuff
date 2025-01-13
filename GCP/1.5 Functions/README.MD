@@ -115,5 +115,18 @@ gcloud functions deploy ${FUNCTION_NAME}   --runtime ${RUNTIME}   --trigger-even
 gcloud functions deploy %FUNCTION_NAME%   --runtime %RUNTIME%   --trigger-event "%EVENT_TYPE%" --trigger-resource "%DOCUMENT_PATH%" --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 
-
+The data is structured as the following:
+```python
+{
+    "oldValue": { // Update and Delete operations only
+        A Document object containing a pre-operation document snapshot
+    },
+    "updateMask": { // Update operations only
+        A DocumentMask object that lists changed fields.
+    },
+    "value": {
+        // A Document object containing a post-operation document snapshot
+    }
+}
+```
 
