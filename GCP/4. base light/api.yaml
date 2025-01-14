@@ -1,0 +1,78 @@
+swagger: "2.0"
+info:
+  title: "Exam"
+  description: "API for the SAC Exam"
+  version: "1.0.0"
+host: "examproject.appspot.com"
+basePath: "/api/v1"
+schemes:
+  - "https"
+paths:
+    /item/{idItem}:
+        parameters:
+        - name: idItem
+          in: path
+          description: 'Item identifier'
+          type: integer
+          required: true
+        get:
+          description: "Get item from item name"
+          operationId: "itemGet"
+          responses:
+              200:
+                  description: "Success."
+                  schema:
+                      $ref: "#/definitions/Item"
+              404:
+                  description: "color not found"
+        post:
+          description: "add a new Item"
+          operationId: "itemPost"
+          consumes:
+              - application/json
+          parameters:
+          - in: body
+            name: item
+            description: "Color object"
+            schema:
+              $ref: "#/definitions/Item"
+            required: true 
+          responses:
+              201:
+                  description: "Item added."
+              400:
+                  description: "Invalid item"
+              409:
+                  description: "Already inserted"
+    /itemList:
+        get:
+          description: "Get item list"
+          operationId: "itemList"
+          responses:
+              200:
+                  description: "Success."
+                  schema:
+                      $ref: "#/definitions/ItemList"
+              404:
+                  description: "Items not found"
+    /clean:
+        get:
+          description: "Cleans the DB"
+          operationId: "DBClean"
+          responses:
+              200:
+                  description: "Success."
+definitions:
+    ItemList:
+      type: array
+      items:
+        type: string
+    Item:
+      type: object
+      properties: 
+        property1: 
+          type: integer
+          minimum: 0
+          maximum: 255
+        property2: 
+          type: string

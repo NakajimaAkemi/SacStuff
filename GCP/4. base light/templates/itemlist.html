@@ -1,0 +1,10 @@
+<html> 
+<body>
+<h1>List of items</h1>
+<ul>
+    {%for item in items%}
+    <li><a href="/item/{{item['id']}}">{{item['nome']}}</a></li>
+    {%endfor%}
+</ul>
+</body>
+</html>

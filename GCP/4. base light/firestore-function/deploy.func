@@ -1,0 +1,30 @@
+@echo off
+REM Configura le variabili
+set PROJECT_ID=sacbilelarfaoui
+set FUNCTION_NAME=my_function
+set RUNTIME=python39
+set EVENT_TYPE=providers/cloud.firestore/eventTypes/action_wildcard
+set DOCUMENT_PATH=projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
+
+REM Verifica che tutte le variabili necessarie siano impostate
+if "%PROJECT_ID%"=="" (
+    echo Errore: Devi impostare la variabile di ambiente PROJECT_ID prima di eseguire questo script.
+    exit /b 1
+)
+
+REM Comando per il deploy della funzione
+echo Deploying function %FUNCTION_NAME% with runtime %RUNTIME%...
+gcloud functions deploy %FUNCTION_NAME% ^
+  --runtime %RUNTIME% ^
+  --trigger-http ^
+  --allow-unauthenticated ^
+  --docker-registry=artifact-registry ^
+  --no-gen2 ^
+  --region europe-west2
+
+if errorlevel 1 (
+    echo Errore durante il deploy della funzione.
+    exit /b 1
+) else (
+    echo Funzione deployata con successo!
+)

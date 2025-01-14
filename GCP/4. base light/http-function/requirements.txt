@@ -1,0 +1,4 @@
+flask==2.3.3
+google-cloud-firestore
+python-dateutil
+numpy

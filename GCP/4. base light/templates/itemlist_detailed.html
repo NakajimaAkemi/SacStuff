@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Items</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>List of Items</h1>
+        <ul>
+            {% for item in items %}
+            <li>
+                <a href="/item/{{ item['id'] }}">{{ item['nome'] }}</a>
+                <ul>
+                    {% for key, value in item.items() %}
+                    <li>
+                        <strong>{{ key }}:</strong>
+                        {% if value is mapping %}
+                            <ul>
+                                {% for sub_key, sub_value in value.items() %}
+                                <li>{{ sub_key }}: {{ sub_value }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% elif value is iterable and value is not string %}
+                            <ul>
+                                {% for sub_item in value %}
+                                <li>{{ sub_item }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+    <link rel="stylesheet" href="/static/style.css">
+<head>Item</head>
+<body>
+<ul>
+    {% for key, value in item.items() %}
+        <li>
+            <strong>{{ key }}:</strong>
+            {% if value is mapping %}
+                <ul>
+                    {% for sub_key, sub_value in value.items() %}
+                        <li>{{ sub_key }}: {{ sub_value }}</li>
+                    {% endfor %}
+                </ul>
+            {% elif value is iterable and value is not string %}
+                <ul>
+                    {% for item in value %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {{ value }}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <table>
+        <tr>
+            <td>{{form.nome.label}}</td>
+            <td>{{form.nome}}</td>
+        </tr>
+        <tr>
+            <td>{{form.cognome.label}}</td>
+            <td>{{form.cognome}}</td>
+        </tr>
+        <tr>
+            <td>{{form.cap.label}}</td>
+            <td>{{form.cap}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit"></td>
+        </tr>
+     </table>
+</form>
+</html>
