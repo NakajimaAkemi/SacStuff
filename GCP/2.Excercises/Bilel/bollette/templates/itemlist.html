@@ -1,0 +1,10 @@
+<html> 
+<body>
+<h1>List of bollette</h1>
+<ul>
+    {%for item in items%}
+    <li><a href="/bolletta/{{item['data']}}">{{item['data']}}</a></li>
+    {%endfor%}
+</ul>
+</body>
+</html>

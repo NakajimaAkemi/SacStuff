@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readable Template</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        {% for key, value in item.items() %}
+        <div>
+            <span class="key">{{ key }}:</span>
+            {% if value is mapping %}
+            <div class="mapping">
+                {% for sub_key, sub_value in value.items() %}
+                <div>
+                    <span class="sub-key">{{ sub_key }}:</span> <span class="sub-value">{{ sub_value }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% elif value is iterable and value is not string %}
+            <div class="iterable">
+                {% for item in value %}
+                <div class="item">{{ item }}</div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <span class="value">{{ value }}</span>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
