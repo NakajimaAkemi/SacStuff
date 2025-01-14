@@ -1,0 +1,59 @@
+{
+    "scenario_schema": {
+        "K": {"pattern": "**.K", "type": "integer"}
+    },
+    "metrics": {
+        "TotalJobs": {"module": "**.src", "scalar_name": "created:last" ,"aggr": ["none"]},
+        "DroppedJobs": {"module": "**.srv[*]", "scalar_name": "dropped:count" ,"aggr": ["avg", "std"]},
+        "QLen": {"module": "**.srv[*]", "scalar_name": "queueLength:timeavg" ,"aggr": ["avg", "std"]},
+        "Utilization": {"module": "**.srv[*]", "scalar_name": "busy:timeavg" ,"aggr": ["avg", "std"]},
+        "PQueue": {"module": "**.sink", "scalar_name": "queuesVisited:mean" ,"aggr": ["none"]},
+        "ServiceTime": {"module": "**.sink", "scalar_name": "totalServiceTime:mean" ,"aggr": ["none"]},
+        "WaitingTime": {"module": "**.sink", "scalar_name": "totalQueueingTime:mean" ,"aggr": ["none"]},
+        "ResponseTime": {"module": "**.sink", "scalar_name": "lifeTime:mean" ,"aggr": ["none"]}
+    },
+    "histograms": {
+        "SinkService": {"module": "**.sink", "histogram_name": "totalServiceTime:histogram"},
+        "SinkQueue": {"module": "**.sink", "histogram_name": "totalQueueingTime:histogram"},
+        "SinkTime": {"module": "**.sink", "histogram_name": "lifeTime:histogram"}
+    },
+
+    "analyses": {
+        "SensK": {
+            "outfile": "results/sens_K_erlang.data",
+            "scenarios": {
+                "fixed": {},
+                "range": ["K"]
+            },
+            "metrics": [
+                {"metric": "TotalJobs", "aggr": "none"},
+                {"metric": "DroppedJobs", "aggr": "avg"},
+                {"metric": "PQueue", "aggr": "none"},
+                {"metric": "ServiceTime", "aggr": "none"},
+                {"metric": "WaitingTime", "aggr": "none"},
+                {"metric": "ResponseTime", "aggr": "none"}
+                    ]
+        },
+        "Hist_K1": {
+            "outfile": "results/Erlang_K1_SinkTimeH.data",
+            "scenario": {"K": "1"},
+            "histogram": "SinkTime"
+        },        
+        "Hist_K2": {
+            "outfile": "results/Erlang_K2_SinkTimeH.data",
+            "scenario": {"K": "2"},
+            "histogram": "SinkTime"
+        },        
+        "Hist_K3": {
+            "outfile": "results/Erlang_K3_SinkTimeH.data",
+            "scenario": {"K": "3"},
+            "histogram": "SinkTime"
+        },        
+        "Hist_K4": {
+            "outfile": "results/Erlang_K4_SinkTimeH.data",
+            "scenario": {"K": "4"},
+            "histogram": "SinkTime"
+        }
+    }
+}
+

@@ -1,0 +1,34 @@
+{
+    "scenario_schema": {
+        "lambda1": {"pattern": "**.lambda1", "type": "real"},
+        "lambda2": {"pattern": "**.lambda2", "type": "real"},
+        "mu1": {"pattern": "**.mu1", "type": "real"},
+        "mu2": {"pattern": "**.mu2", "type": "real"}
+    },
+    "metrics": {
+        "PQueue1": {"module": "**.sink1", "scalar_name": "queuesVisited:mean" ,"aggr": ["none"]},
+        "ServiceTime1": {"module": "**.sink1", "scalar_name": "totalServiceTime:mean" ,"aggr": ["none"]},
+        "WaitingTime1": {"module": "**.sink1", "scalar_name": "totalQueueingTime:mean" ,"aggr": ["none"]},
+        "ResponseTime1": {"module": "**.sink1", "scalar_name": "lifeTime:mean" ,"aggr": ["none"]},
+        "PQueue2": {"module": "**.sink2", "scalar_name": "queuesVisited:mean" ,"aggr": ["none"]},
+        "ServiceTime2": {"module": "**.sink2", "scalar_name": "totalServiceTime:mean" ,"aggr": ["none"]},
+        "WaitingTime2": {"module": "**.sink2", "scalar_name": "totalQueueingTime:mean" ,"aggr": ["none"]},
+        "ResponseTime2": {"module": "**.sink2", "scalar_name": "lifeTime:mean" ,"aggr": ["none"]}
+    },
+    "histograms": {
+        "SinkTime1": {"module": "**.sink1", "histogram_name": "lifeTime:histogram"},
+        "SinkTime2": {"module": "**.sink2", "histogram_name": "lifeTime:histogram"}
+    },
+    "analyses": {
+        "Hist_LB_US1": {
+            "outfile": "results/MM1_LB_Unbalanced_Source_NOBAL1.data",
+            "scenario": {"mu1": "5.0", "mu2": "5.0", "lambda1": "4.5", "lambda2": "2.0"},
+            "histogram": "SinkTime1"
+        },        
+        "Hist_LB_US2": {
+            "outfile": "results/MM1_LB_Unbalanced_Source_NOBAL2.data",
+            "scenario": {"mu1": "5.0", "mu2": "5.0", "lambda1": "4.5", "lambda2": "2.0"},
+            "histogram": "SinkTime2"
+        }
+    }
+}
