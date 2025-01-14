@@ -108,7 +108,7 @@ The action wildcard can be:
 Typical deployment command:
 *Linux*
 ```bash
-gcloud functions deploy ${FUNCTION_NAME} --runtime ${RUNTIME} --trigger-event "${EVENT_TYPE}" --trigger-resource "${DOCUMENT_PATH}" --docker-registry=artifact-registry --no-gen2 --region europe-west2
+gcloud functions deploy ${FUNCTION_NAME} --runtime=${RUNTIME} --trigger-event=${EVENT_TYPE} --trigger-resource?${DOCUMENT_PATH} --docker-registry=artifact-registry --no-gen2 --region europe-west2
 ```
 *Windows*
 ```bash
