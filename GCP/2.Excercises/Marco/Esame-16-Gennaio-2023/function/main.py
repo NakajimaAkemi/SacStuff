@@ -11,10 +11,11 @@ def function_firestore(event_data, context):
 
     lettura = {'id': data_lett, 'value': valu_lett, 'isInterpolated': False}
     
-    costo_lettura = valu_lett * 0.5
+    costo_lettura = float(valu_lett) * 0.5
 
     giorno, mese, anno = data_lett.split('-')
-    mese_bolletta = f'{(int(mese) + 1) % 12}-{int(anno)+1 if int(mese) == 12 else anno}'
+    mes = (int(mese) + 1) % 12 if int(mese) != 11 else int(mese) + 1
+    mese_bolletta = f'{mes}-{int(anno)+1 if int(mese) == 12 else anno}'
     periodo_bolletta = month_range(int(anno), int(mese))
     item_ref = db.collection('bollette').document(mese_bolletta)
     if item_ref.get().exists:

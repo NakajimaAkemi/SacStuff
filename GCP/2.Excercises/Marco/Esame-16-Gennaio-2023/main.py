@@ -19,6 +19,7 @@ def homepage():
 @app.route('/bollette', methods = ['GET'])
 def bollette_page():
     bollette_l = dao.get_last_year_billings()
+    print(bollette_l)
     return render_template('list_bollette.html', bollette_l=bollette_l)
 
 

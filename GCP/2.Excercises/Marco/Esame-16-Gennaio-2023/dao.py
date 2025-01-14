@@ -57,12 +57,9 @@ class bolletteDao(object):
             return rv
         
     def get_last_year_billings(self) -> Optional[list[dict]]:
-        items = self.db.collection('bollette').order_by('id', direction=firestore.Query.DESCENDING).limit(12).stream()
-        rv = []
-        for item in items:
-            if item.exists():
-                del item['id']
-            rv.append(item)
+        items = self.db.collection('bollette').order_by('mese', direction=firestore.Query.DESCENDING).limit(12).stream()
+       
+        rv = [item.to_dict() for item in items if item.exists]
 
         return rv
 
