@@ -90,8 +90,8 @@ gcloud functions deploy %FUNCTION_NAME% --runtime %RUNTIME% --trigger-topic %TOP
 We can trigger a function with an action over a firestore document, we need define the 
 *Linux*
 ```bash
-expose EVENT_TYPE = providers/cloud.firestore/eventTypes/action_wildcard
-expose DOCUMENT_PATH = projects/%PROJECT_ID%/databases/(default)/documents/collection/{document_wildcard}
+export EVENT_TYPE = providers/cloud.firestore/eventTypes/action_wildcard
+export DOCUMENT_PATH = projects/${PROJECT_ID}/databases/(default)/documents/collection/{document_wildcard}
 ```
 *Windows*
 ```bash
