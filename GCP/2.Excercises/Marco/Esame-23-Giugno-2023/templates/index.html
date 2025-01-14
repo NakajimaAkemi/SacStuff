@@ -1,0 +1,36 @@
+<html>
+    <link rel="stylesheet" href="/static/style.css">
+    <h1>Vedi se l'IP può essere routed!</h1>
+    <form method="POST">
+        <table>
+            <tr>
+                <td>{{form.ip.label}}</td>
+                <td>{{form.ip}}</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Cerca"></td>
+            </tr>
+        </table>
+        <ul>
+
+        {%for item in rules%}
+        <li>
+        {% if item['id'] == found_index %}
+            {% for key, value in item.items() %}
+                <a class="found"><strong>{{ key }}:</strong>{{ value }} &emsp; </a>
+            {% endfor %}
+        {% else %}
+            {% for key, value in item.items() %}
+                <strong>{{ key }}:</strong>{{ value }} &emsp;
+            {% endfor %}
+        {%endif%}
+        </li>
+        {%endfor%}
+        </ul>
+        {% if error_on_ip %}
+            <a class="found"> ERRORE, l'ip inserito "{{ip}}" non è valido</h1>
+        {%endif%}
+        {% if error_on_ro %}
+            <a class="found"> ERRORE, l'ip inserito "{{ip}}" non può essere routed</h1>
+        {%endif%}
+</html>

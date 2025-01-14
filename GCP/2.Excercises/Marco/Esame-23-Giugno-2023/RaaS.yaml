@@ -1,0 +1,126 @@
+swagger: '2.0'
+info:
+  title: RaaS Api
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - https
+paths:
+  /clean:
+    post:
+      responses:
+        '200':
+         description: OK
+  /routing:
+    get:
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/rule_list"
+
+        '404':
+          description: No rules were found.
+    
+    post:
+      consumes: 
+        - string
+      responses:
+        '200': 
+          description: OK
+          schema:
+            type: string
+        
+        '404':
+          description: No such IP
+        
+  
+  /routing/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: integer
+        description: ID of a routing rule
+
+    get:
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: "#/definitions/rule_list"
+
+        '404':
+          description: Rule ID not found.
+
+    post:
+      consumes:
+      - application/json
+      parameters:
+        - in: body
+          required: true
+          name: newRule
+          schema:
+            $ref: "#/definitions/rule"
+      
+      responses:
+        '201':
+          description: Rule added
+          schema:
+            $ref: "#/definitions/rule"
+        '400':
+          description: One or more invalid fields
+        '409':
+          description: Rule with this ID already exists
+      
+    put:
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          required: true
+          name: newRule
+          schema:
+            $ref: "#/definitions/rule"
+      
+      responses:
+        '201':
+          description: Rule added
+          schema: 
+            $ref: "#/definitions/rule"
+        
+        '404':
+          description: No such ID
+
+        '400':
+          description: One or more invalid fields.
+        
+    delete:
+      responses:
+        '204':
+          description: Rule deleted
+        
+        '400':
+          description: One or more invalid fields.
+
+
+        
+
+definitions:
+  rule:
+    type: object
+    properties: 
+      netID: 
+        type: string
+      netmaskCIDR:
+        type: string
+      gw:
+        type: string
+      device:
+        type: string
+  
+  rule_list:
+    type: array
+    properties: 
+      schema:
+        type: integer
