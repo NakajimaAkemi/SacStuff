@@ -1,0 +1,12 @@
+<html>
+    <h1> Ultime 12 bollette</h1>
+    <ul>
+        {%for item in bollette_l%}
+        <li>
+            {%for key, value in item.items()%}
+                <strong>{{key}}</strong> -> {{value}} <br>
+            {%endfor%}
+        </li>
+        {%endfor%}
+    </ul>
+</html>
