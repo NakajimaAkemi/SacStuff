@@ -50,10 +50,6 @@ paths:
         '404':
           description: Message not found
 
-
-
-
-
 definitions:
   messagePosted:
     type: object
