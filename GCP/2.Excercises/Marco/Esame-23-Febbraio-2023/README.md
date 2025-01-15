@@ -1,0 +1,2 @@
+# Aggiunta
+Oltre al testo normale dell'esercizio, abbiamo inserito una function con trigger pub/sub che aggiunge un entry in Firestore se trova un messaggio con una determinata parola in un determinato topic.

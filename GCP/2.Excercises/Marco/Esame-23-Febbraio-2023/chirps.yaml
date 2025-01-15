@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  title: chirpsAPI
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - https
+paths:
+  /clean:
+    get:
+      responses:
+        '200':
+          description: OK
+  
+  /chirps:
+    post:
+      description: 'Adds a cantiere'
+      consumes:
+        - string
+      parameters:
+        - in: body
+          name: message
+          required: true
+          schema:
+            $ref: "#/definitions/message"
+      
+      responses:
+        '200':
+          description: Message added
+          schema:
+            $ref: "#/definitions/messagePosted"
+        
+        '400':
+          description: Message is not a string or is empty
+
+  /chirps/{id}:
+    parameters:
+      - in: path
+        name: messageID
+        required: true
+        type: string
+
+    get:
+      responses:
+        '200':
+          description: Got a message
+          schema:
+            $ref: "#/definitions/messagePosted"
+
+        '404':
+          description: Message not found
+
+
+
+
+
+definitions:
+  messagePosted:
+    type: object
+
+  message: 
+    type: string

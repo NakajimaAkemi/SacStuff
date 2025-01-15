@@ -1,0 +1,30 @@
+<html>
+    <link rel="stylesheet" href="/static/style.css">
+    <h1> Benvenuto su Chirps!</h1>
+    <h2> Posta un messaggio</h2>
+    <form method="POST">
+        <table>
+            <tr>
+                <td>{{form1.message.label}}</td>
+                <td>{{form1.message}}</td>
+            </tr>
+            <tr><td><input type="submit" value="Post"></td></tr>
+        </table>
+    </form>
+
+    <h2> Oppure cerca un hashtag</h2> 
+
+    <form method="POST", action="/search_hashtag">
+        <table>
+            <tr>
+                <td>{{form2.hashtag.label}}</td>
+                <td>{{form2.hashtag}}</td>
+            </tr>
+            <tr><td><input type="submit" value="Cerca"></td></tr>
+        </table>
+    </form>
+
+    {% if posted%}
+        <a> Chirp postato!</a>
+    {%endif%}
+</html>

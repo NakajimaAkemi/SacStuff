@@ -1,0 +1,7 @@
+#!/bin/bash
+export PROJECT_ID=uaas070120252
+export NAME=pubsubuser
+export GOOGLE_APPLICATION_CREDENTIALS=/home/marco/Uni/SAC/SacStuff/GCP/2.Excercises/Marco/Esame-23-Febbraio-2023/credentials.json
+export FUNCTION_NAME=pubsub_function
+export RUNTIME=python39
+export TOPIC=provola
